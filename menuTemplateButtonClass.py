@@ -3,21 +3,35 @@
 
 import pygame, sys
 pygame.init()
+BackGround = pygame.image.load('P:/madara_uchiha__s_mangekyou_sharingan_by_kriss80858-d54wvmh (1).jpg')
+
+# pygame.mixer.pre_init(frequency=44100, size=-16, channels=2, buffer=4096)
+# pygame.mixer.music.load('Naruto_Song.mp3')
+# pygame.mixer.music.play(-1)
 
 # Define some colours
 WHITE = (255, 255, 255)
-GRAY = (127, 127, 127)
+GRAY = (127, 127, 127)  
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 BLUE = (0, 0, 255)
 
-SCREENWIDTH = 120
-SCREENHEIGHT = 100
+# Colour Palette
+DARK_BLUE = (12, 44, 82)
+GREY = (95, 107, 97)
+BABY_BLUE = (94, 157, 200)
+WHITE_BLUE = (220, 240, 247)
+
+SCREENWIDTH = 710
+SCREENHEIGHT = 710
 size = (SCREENWIDTH, SCREENHEIGHT)
 screen = pygame.display.set_mode(size)
 
+
+
 class Button():
     """This is a class for a generic button.
+    
        txt = text on the button
        location = (x,y) coordinates of the button's centre
        action = name of function to run when button is pressed
@@ -43,6 +57,10 @@ class Button():
 
         self.call_back_ = action
 
+        #pygame.mixer.pre_init(frequency=44100, size=-16, channels=2, buffer=4096)
+        #pygame.mixer.load('Sounds/soundtrack.mps3')
+        #pygame.mixer.music.play(-1) THIS IS WHERE THE MUSIC FILE IS
+
     def draw(self):
         self.mouseover()
 
@@ -65,15 +83,36 @@ def my_shell_function():
     """A generic function that prints something in the shell"""
     print('Fire the nukes!')
 
-def my_next_function():
+def my_settings_function():
     """A function that advances to the next level"""
     global level
     level += 1
 
-def my_previous_function():
+def my_hello_function():
+    
+    """A function that prints hello when pressed"""
+    print('Hello')
+
+def my_back_function():
     """A function that retreats to the previous level"""
     global level
     level -= 1
+
+def my_sound_function():
+    """A function that allows user to change sound settings"""
+    print('')
+
+def my_soundon_function():
+    """A function that allows you to turn the sound on"""
+    pygame.mixer.music.unpause()
+    print('Sound On')
+
+
+def my_soundoff_function():
+    """A function that allows you to turn the sound off"""
+    pygame.mixer.music.pause()
+    print('Sound Off')
+
 
 def my_quit_function():
     """A function that will quit the game and close the pygame window"""
@@ -96,14 +135,27 @@ level = 1
 carryOn = True
 clock = pygame.time.Clock()
 
-#create button objects and store in buttons list
-button_01 = Button("Next", (SCREENWIDTH/2, SCREENHEIGHT/3), my_next_function)
-button_02 = Button("Previous", (SCREENWIDTH/2, SCREENHEIGHT/3), my_previous_function)
-button_03 = Button("Quit", (SCREENWIDTH/2, SCREENHEIGHT*2/3), my_quit_function, bg=(50, 200, 20))
+#create button objects
+button_01 = Button("Settings", (SCREENWIDTH/2, SCREENHEIGHT/3), my_settings_function)
+button_02 = Button("Back", (SCREENWIDTH/2, SCREENHEIGHT/3), my_back_function)
+button_03 = Button("Quit", (SCREENWIDTH/3, SCREENHEIGHT*3.4/4), my_quit_function, bg=(50, 200, 20))
+button_04 = Button("Hello", (SCREENWIDTH/2, SCREENHEIGHT/4), my_hello_function)
+button_05 = Button("Sound", (SCREENWIDTH/2, SCREENHEIGHT/2), my_sound_function)
+button_06 = Button("Sound On", (SCREENWIDTH/4, SCREENHEIGHT/2), my_soundon_function)
+button_07 = Button("Sound Off", (SCREENWIDTH *3/4, SCREENHEIGHT/2), my_soundoff_function)
+
+
+#Game title
+fontTitle = pygame.font.Font('freesansbold.ttf', 32)
+textSurfaceTitle = fontTitle.render('Naruto 2.0!', True, BLACK) 
+textRectTitle = textSurfaceTitle.get_rect()
+
+textRectTitle.center = (250, 50)
+
 
 #arrange button groups depending on level
-level1_buttons = [button_01, button_03]
-level2_buttons = [button_02, button_03]
+level1_buttons = [button_01, button_03 , button_04]
+level2_buttons = [button_02, button_03 , button_05, button_06, button_07]
 
 #---------Main Program Loop----------
 while carryOn:
@@ -119,7 +171,10 @@ while carryOn:
     # --- Draw code goes here
 
     # Clear the screen to white
-    screen.fill(WHITE)
+    screen.fill(BLACK)
+    screen.blit(BackGround,(0,0))
+
+    screen.blit(textSurfaceTitle, textRectTitle)
 
     # Draw buttons
     if level == 1:
@@ -136,3 +191,5 @@ while carryOn:
     clock.tick(60)
 
 pygame.quit()
+
+
