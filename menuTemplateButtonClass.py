@@ -3,11 +3,11 @@
 
 import pygame, sys
 pygame.init()
-BackGround = pygame.image.load('P:/madara_uchiha__s_mangekyou_sharingan_by_kriss80858-d54wvmh (1).jpg')
+BackGround = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/madara_uchiha__s_mangekyou_sharingan_by_kriss80858-d54wvmh (1).jpg')
 
-# pygame.mixer.pre_init(frequency=44100, size=-16, channels=2, buffer=4096)
-# pygame.mixer.music.load('Naruto_Song.mp3')
-# pygame.mixer.music.play(-1)
+#pygame.mixer.pre_init(frequency=44100, size=-16, channels=2, buffer=4096)
+#pygame.mixer.music.load('Naruto_Song.mp3')
+#pygame.mixer.music.play(-1)
 
 # Define some colours
 WHITE = (255, 255, 255)
@@ -43,7 +43,7 @@ class Button():
        font_name = name of font
        font_size = size of font
     """
-    def __init__(self, txt, location, action, bg=WHITE, fg=BLACK, size=(80, 30), font_name="Segoe Print", font_size=16):
+    def __init__(self, txt, location, action, bg=WHITE, fg=BLACK, size=(100, 50), font_name="Segoe Print", font_size=16):
         self.color = bg  # the static (normal) color
         self.bg = bg  # actual background color, can change on mouseover
         self.fg = fg  # text color
@@ -96,6 +96,14 @@ def my_playgame_function():
     level += 2
     print('Game Start')
 
+
+def my_next_function():
+    global level
+    """A function that takes the user to the next page/level."""
+    level +=1
+    
+    
+
 def my_back_function():
     """A function that retreats to the previous level"""
     global level
@@ -122,10 +130,25 @@ def my_quit_function():
     pygame.quit()
     sys.exit()
 
+def my_instructions_function():
+    """a function that allows you to read the intructions"""
+    global level
+    level += 1
+
+def my_mainmenu_function():
+    """A funtion that will return you to the main menu"""
+    global level
+    level = 1
+    
+
 def mousebuttondown(level):
     """A function that checks which button was pressed"""
     pos = pygame.mouse.get_pos()
     if level == 1:
+
+
+
+        
         for button in level1_buttons:
             if button.rect.collidepoint(pos):
                 button.call_back()
@@ -137,6 +160,14 @@ def mousebuttondown(level):
         for button in level3_buttons:
             if button.rect.collidepoint(pos):
                 button.call_back()
+    elif level == 4:
+        for button in level4_buttons:
+            if button.rect.collidepoint(pos):
+                button.call_back()
+    elif level == 5:
+        for button in level5_buttons:
+            if button.rect.collidepoint(pos):
+                button.call_back()
 
 level = 1
 carryOn = True
@@ -145,13 +176,14 @@ clock = pygame.time.Clock()
 #create button objects
 button_01 = Button("Settings", (SCREENWIDTH/2, SCREENHEIGHT/3), my_settings_function)
 button_02 = Button("Back", (SCREENWIDTH/2, SCREENHEIGHT/3), my_back_function)
-button_03 = Button("Quit", (SCREENWIDTH/3, SCREENHEIGHT*3.4/4), my_quit_function, bg=(50, 200, 20))
+button_03 = Button("Quit", (SCREENWIDTH/2, SCREENHEIGHT*3.2/4), my_quit_function, bg=(50, 200, 20))
 button_04 = Button("PLAYGAME", (SCREENWIDTH/2, SCREENHEIGHT/4.5), my_playgame_function)
 button_05 = Button("Sound", (SCREENWIDTH/2, SCREENHEIGHT/2), my_sound_function)
 button_06 = Button("Sound On", (SCREENWIDTH/4, SCREENHEIGHT/2), my_soundon_function)
 button_07 = Button("Sound Off", (SCREENWIDTH *3/4, SCREENHEIGHT/2), my_soundoff_function)
-# button_08 = Button("Next", (SCREENWIDTH/2, SCREENHEIGHT/3), my_next_function)
-
+button_08 = Button("Next", (SCREENWIDTH/2, SCREENHEIGHT*2/3), my_next_function)
+button_09 = Button("MainMenu", (SCREENWIDTH/2, SCREENHEIGHT*1/5),my_mainmenu_function)
+button_10 = Button("Instructions", (SCREENWIDTH/2, SCREENHEIGHT/2), my_instructions_function)
 #Game title
 fontTitle = pygame.font.Font('freesansbold.ttf', 32)
 textSurfaceTitle = fontTitle.render('Naruto 2.0!', True, GREY) 
@@ -163,6 +195,9 @@ textRectTitle.center = (250, 50)
 #arrange button groups depending on level
 level1_buttons = [button_01, button_03 , button_04]
 level2_buttons = [button_02, button_03 , button_05, button_06, button_07]
+level3_buttons = [button_02, button_09, button_10]
+level4_buttons = [button_02, button_09]
+level5_buttons = [button_02]
 # level3_buttons = [button_08]
 #---------Main Program Loop----------
 while carryOn:
@@ -190,7 +225,15 @@ while carryOn:
     elif level == 2:
         for button in level2_buttons:
             button.draw()
-
+    elif level == 3:
+        for button in level3_buttons:
+            button.draw()      
+    elif level == 4:
+        for button in level4_buttons:
+            button.draw() 
+    elif level == 5:
+        for button in level5_buttons:
+            button.draw() 
     # Update the screen with queued shapes
     pygame.display.flip()
 
