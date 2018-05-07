@@ -88,10 +88,11 @@ def my_settings_function():
     global level
     level += 1
 
-def my_hello_function():
-    
-    """A function that prints hello when pressed"""
-    print('Hello')
+def my_playgame_function():
+    global level
+    """A function that takesm you to instructions when pressed"""
+    level += 2
+    print('Game Start')
 
 def my_back_function():
     """A function that retreats to the previous level"""
@@ -130,6 +131,10 @@ def mousebuttondown(level):
         for button in level2_buttons:
             if button.rect.collidepoint(pos):
                 button.call_back()
+    elif level == 3:
+        for button in level3_buttons:
+            if button.rect.collidepoint(pos):
+                button.call_back()
 
 level = 1
 carryOn = True
@@ -139,11 +144,11 @@ clock = pygame.time.Clock()
 button_01 = Button("Settings", (SCREENWIDTH/2, SCREENHEIGHT/3), my_settings_function)
 button_02 = Button("Back", (SCREENWIDTH/2, SCREENHEIGHT/3), my_back_function)
 button_03 = Button("Quit", (SCREENWIDTH/3, SCREENHEIGHT*3.4/4), my_quit_function, bg=(50, 200, 20))
-button_04 = Button("Hello", (SCREENWIDTH/2, SCREENHEIGHT/4), my_hello_function)
+button_04 = Button("PLAYGAME", (SCREENWIDTH/2, SCREENHEIGHT/4.5), my_playgame_function)
 button_05 = Button("Sound", (SCREENWIDTH/2, SCREENHEIGHT/2), my_sound_function)
 button_06 = Button("Sound On", (SCREENWIDTH/4, SCREENHEIGHT/2), my_soundon_function)
 button_07 = Button("Sound Off", (SCREENWIDTH *3/4, SCREENHEIGHT/2), my_soundoff_function)
-
+# button_08 = Button("Next", (SCREENWIDTH/2, SCREENHEIGHT/3), my_next_function)
 
 #Game title
 fontTitle = pygame.font.Font('freesansbold.ttf', 32)
@@ -156,7 +161,7 @@ textRectTitle.center = (250, 50)
 #arrange button groups depending on level
 level1_buttons = [button_01, button_03 , button_04]
 level2_buttons = [button_02, button_03 , button_05, button_06, button_07]
-
+# level3_buttons = [button_08]
 #---------Main Program Loop----------
 while carryOn:
     # --- Main event loop ---
