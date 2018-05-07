@@ -152,7 +152,7 @@ button_07 = Button("Sound Off", (SCREENWIDTH *3/4, SCREENHEIGHT/2), my_soundoff_
 
 #Game title
 fontTitle = pygame.font.Font('freesansbold.ttf', 32)
-textSurfaceTitle = fontTitle.render('Naruto 2.0!', True, BLACK) 
+textSurfaceTitle = fontTitle.render('Naruto 2.0!', True, GREY) 
 textRectTitle = textSurfaceTitle.get_rect()
 
 textRectTitle.center = (250, 50)
