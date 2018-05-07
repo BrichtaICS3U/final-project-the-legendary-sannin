@@ -3,7 +3,7 @@
 
 import pygame, sys
 pygame.init()
-BackGround = pygame.image.load('P:/madara_uchiha__s_mangekyou_sharingan_by_kriss80858-d54wvmh (1).jpg')
+BackGround = pygame.image.load('P:/final-project-the-legendary-sannin/madara_uchiha__s_mangekyou_sharingan_by_kriss80858-d54wvmh (1).jpg')
 
 # pygame.mixer.pre_init(frequency=44100, size=-16, channels=2, buffer=4096)
 # pygame.mixer.music.load('Naruto_Song.mp3')
@@ -17,10 +17,10 @@ RED = (255, 0, 0)
 BLUE = (0, 0, 255)
 
 # Colour Palette
-DARK_BLUE = (12, 44, 82)
-GREY = (95, 107, 97)
-BABY_BLUE = (94, 157, 200)
-WHITE_BLUE = (220, 240, 247)
+PRED = (237, 28, 28)
+PBLACK = (95, 107, 97)
+PGRAY = (95, 96, 99)
+PBGRAY = (172, 173, 175)
 
 SCREENWIDTH = 710
 SCREENHEIGHT = 710
@@ -41,7 +41,7 @@ class Button():
        font_name = name of font
        font_size = size of font
     """
-    def __init__(self, txt, location, action, bg=WHITE, fg=BLACK, size=(80, 30), font_name="Segoe Print", font_size=16):
+    def __init__(self, txt, location, action, bg=PBGRAY, fg=BLACK, size=(100, 35), font_name="Segoe Print", font_size=16):
         self.color = bg  # the static (normal) color
         self.bg = bg  # actual background color, can change on mouseover
         self.fg = fg  # text color
@@ -118,7 +118,7 @@ def my_soundoff_function():
 def my_quit_function():
     """A function that will quit the game and close the pygame window"""
     pygame.quit()
-    sys.exit()
+    sys.exit()    
 
 def mousebuttondown(level):
     """A function that checks which button was pressed"""
@@ -135,27 +135,34 @@ def mousebuttondown(level):
         for button in level3_buttons:
             if button.rect.collidepoint(pos):
                 button.call_back()
+                
 
 level = 1
 carryOn = True
 clock = pygame.time.Clock()
 
 #create button objects
-button_01 = Button("Settings", (SCREENWIDTH/2, SCREENHEIGHT/3), my_settings_function)
+button_01 = Button("Settings", (SCREENWIDTH/1.264, SCREENHEIGHT*2/3), my_settings_function)
 button_02 = Button("Back", (SCREENWIDTH/2, SCREENHEIGHT/3), my_back_function)
-button_03 = Button("Quit", (SCREENWIDTH/3, SCREENHEIGHT*3.4/4), my_quit_function, bg=(50, 200, 20))
-button_04 = Button("PLAYGAME", (SCREENWIDTH/2, SCREENHEIGHT/4.5), my_playgame_function)
+button_03 = Button("Quit", (SCREENWIDTH/4.8, SCREENHEIGHT*2.65/4), my_quit_function, bg=(50, 200, 20))
+button_04 = Button("Play Game", (SCREENWIDTH/2, SCREENHEIGHT/6), my_playgame_function)
 button_05 = Button("Sound", (SCREENWIDTH/2, SCREENHEIGHT/2), my_sound_function)
 button_06 = Button("Sound On", (SCREENWIDTH/4, SCREENHEIGHT/2), my_soundon_function)
 button_07 = Button("Sound Off", (SCREENWIDTH *3/4, SCREENHEIGHT/2), my_soundoff_function)
 # button_08 = Button("Next", (SCREENWIDTH/2, SCREENHEIGHT/3), my_next_function)
 
 #Game title
-fontTitle = pygame.font.Font('freesansbold.ttf', 32)
-textSurfaceTitle = fontTitle.render('Naruto 2.0!', True, GREY) 
-textRectTitle = textSurfaceTitle.get_rect()
+fontTitle = pygame.font.Font('freesansbold.ttf', 48)
+textSurfaceTitle1 = fontTitle.render('Indras', True, PGRAY ) 
+textRectTitle1 = textSurfaceTitle1.get_rect()
 
-textRectTitle.center = (250, 50)
+textRectTitle1.center = (350, 250)
+
+fontTitle = pygame.font.Font('freesansbold.ttf', 48)
+textSurfaceTitle2 = fontTitle.render('Arrow', True, PGRAY ) 
+textRectTitle2 = textSurfaceTitle2.get_rect()
+
+textRectTitle2.center = (350, 500)
 
 
 #arrange button groups depending on level
@@ -179,8 +186,8 @@ while carryOn:
     screen.fill(BLACK)
     screen.blit(BackGround,(0,0))
 
-    screen.blit(textSurfaceTitle, textRectTitle)
-
+    screen.blit(textSurfaceTitle1, textRectTitle1)
+    screen.blit(textSurfaceTitle2, textRectTitle2)
     # Draw buttons
     if level == 1:
         for button in level1_buttons:
