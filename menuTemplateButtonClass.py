@@ -3,7 +3,7 @@
 
 import pygame, sys
 pygame.init()
-BackGround = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/madara_uchiha__s_mangekyou_sharingan_by_kriss80858-d54wvmh (1).jpg')
+BackGround = pygame.image.load('P:/final-project-the-legendary-sannin/710573-most-popular-tobi-wallpaper-1920x1080-for-hd-1080p.jpg')
 
 #pygame.mixer.pre_init(frequency=44100, size=-16, channels=2, buffer=4096)
 #pygame.mixer.music.load('Naruto_Song.mp3')
@@ -23,7 +23,7 @@ GREY = (95, 107, 97)
 BABY_BLUE = (94, 157, 200)
 WHITE_BLUE = (220, 240, 247)
 
-SCREENWIDTH = 710
+SCREENWIDTH = 800
 SCREENHEIGHT = 710
 
 size = (SCREENWIDTH, SCREENHEIGHT)
