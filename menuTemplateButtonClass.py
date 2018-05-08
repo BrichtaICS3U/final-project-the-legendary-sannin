@@ -101,8 +101,12 @@ def my_next_function():
     global level
     """A function that takes the user to the next page/level."""
     level +=1
-    
-    
+
+
+def my_credits_function():
+    global level
+    """A function that allows you to view the credits"""
+    level += 7    
 
 def my_back_function():
     """A function that retreats to the previous level"""
@@ -169,6 +173,12 @@ def mousebuttondown(level):
             if button.rect.collidepoint(pos):
                 button.call_back()
 
+    elif level == 10:
+        for button in level10_buttons:
+            if button.rect.collidepoint(pos):
+                button.call_back()
+
+
 level = 1
 carryOn = True
 clock = pygame.time.Clock()
@@ -184,6 +194,7 @@ button_07 = Button("Sound Off", (SCREENWIDTH *3/4, SCREENHEIGHT/2), my_soundoff_
 button_08 = Button("Next", (SCREENWIDTH/2, SCREENHEIGHT*2/3), my_next_function)
 button_09 = Button("MainMenu", (SCREENWIDTH/2, SCREENHEIGHT*1/5),my_mainmenu_function)
 button_10 = Button("Instructions", (SCREENWIDTH/2, SCREENHEIGHT/2), my_instructions_function)
+button_11 = Button("Credits", (SCREENWIDTH/2, SCREENHEIGHT*3/4), my_credits_function)
 #Game title
 fontTitle = pygame.font.Font('freesansbold.ttf', 32)
 textSurfaceTitle = fontTitle.render('Naruto 2.0!', True, GREY) 
@@ -195,9 +206,10 @@ textRectTitle.center = (250, 50)
 #arrange button groups depending on level
 level1_buttons = [button_01, button_03 , button_04]
 level2_buttons = [button_02, button_03 , button_05, button_06, button_07]
-level3_buttons = [button_02, button_09, button_10]
+level3_buttons = [button_02, button_09, button_10, button_11]
 level4_buttons = [button_02, button_09]
 level5_buttons = [button_02]
+level10_buttons = [button_09]
 # level3_buttons = [button_08]
 #---------Main Program Loop----------
 while carryOn:
@@ -233,6 +245,9 @@ while carryOn:
             button.draw() 
     elif level == 5:
         for button in level5_buttons:
+            button.draw()
+    elif level == 10:
+        for button in level10_buttons:
             button.draw() 
     # Update the screen with queued shapes
     pygame.display.flip()
