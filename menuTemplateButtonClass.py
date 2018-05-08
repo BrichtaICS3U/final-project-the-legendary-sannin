@@ -196,8 +196,8 @@ button_09 = Button("MainMenu", (SCREENWIDTH/2, SCREENHEIGHT*1/5),my_mainmenu_fun
 button_10 = Button("Instructions", (SCREENWIDTH/2, SCREENHEIGHT/2), my_instructions_function)
 button_11 = Button("Credits", (SCREENWIDTH/2, SCREENHEIGHT*3/4), my_credits_function)
 #Game title
-fontTitle = pygame.font.Font('freesansbold.ttf', 32)
-textSurfaceTitle = fontTitle.render('Naruto 2.0!', True, GREY) 
+fontTitle = pygame.font.Font('P:/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 64)
+textSurfaceTitle = fontTitle.render('Indras!', True, GREY) 
 textRectTitle = textSurfaceTitle.get_rect()
 
 textRectTitle.center = (250, 50)
