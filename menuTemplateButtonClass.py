@@ -186,7 +186,7 @@ clock = pygame.time.Clock()
 #create button objects
 button_01 = Button("Settings", (SCREENWIDTH/2, SCREENHEIGHT/3), my_settings_function)
 button_02 = Button("Back", (SCREENWIDTH/2, SCREENHEIGHT/3), my_back_function)
-button_03 = Button("Quit", (SCREENWIDTH/2, SCREENHEIGHT*3.2/4), my_quit_function, bg=(50, 200, 20))
+button_03 = Button("Quit", (SCREENWIDTH/2.4, SCREENHEIGHT*3.2/4), my_quit_function, bg=(50, 200, 20))
 button_04 = Button("PLAYGAME", (SCREENWIDTH/2, SCREENHEIGHT/4.5), my_playgame_function)
 button_05 = Button("Sound", (SCREENWIDTH/2, SCREENHEIGHT/2), my_sound_function)
 button_06 = Button("Sound On", (SCREENWIDTH/4, SCREENHEIGHT/2), my_soundon_function)
