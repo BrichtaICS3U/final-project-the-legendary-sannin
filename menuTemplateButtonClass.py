@@ -16,6 +16,7 @@ BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 BLUE = (0, 0, 255)
 BRED = (188, 16, 22)
+BBRED = (216, 15, 21)
 
 # Colour Palette
 DARK_BLUE = (12, 44, 82)
@@ -75,7 +76,7 @@ class Button():
         self.bg = self.color
         pos = pygame.mouse.get_pos()
         if self.rect.collidepoint(pos):
-            self.bg = GRAY  # mouseover color
+            self.bg = BBRED  # mouseover color
 
     def call_back(self):
         """Runs a function when clicked"""
