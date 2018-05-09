@@ -16,6 +16,7 @@ BLACK = (0, 0, 0)
 RED = (188, 16, 22)
 BLUE = (0, 0, 255)
 BRED = (188, 16, 22)
+BBRED = (216, 15, 21)
 
 # Colour Palette
 DARK_BLUE = (12, 44, 82)
@@ -43,11 +44,8 @@ class Button():
        font_name = name of font
        font_size = size of font
     """
-<<<<<<< HEAD
-    def __init__(self, txt, location, action, bg=RED, fg=BLACK, size=(100, 50), font_name="Segoe Print", font_size=16):
-=======
+
     def __init__(self, txt, location, action, bg=BRED, fg=BLACK, size=(100, 50), font_name="Segoe Print", font_size=16):
->>>>>>> 4343ab8ff483a5424c60cd48faa4cad85110abf9
         self.color = bg  # the static (normal) color
         self.bg = bg  # actual background color, can change on mouseover
         self.fg = fg  # text color
@@ -79,7 +77,7 @@ class Button():
         self.bg = self.color
         pos = pygame.mouse.get_pos()
         if self.rect.collidepoint(pos):
-            self.bg = GRAY  # mouseover color
+            self.bg = BBRED  # mouseover color
 
     def call_back(self):
         """Runs a function when clicked"""
@@ -150,7 +148,8 @@ def my_mainmenu_function():
     
 
 def mousebuttondown(level):
-    """A function that checks which button was pressed"""
+    """A function that checks which button ):
+                was pressed"""
     pos = pygame.mouse.get_pos()
     if level == 1:
 
@@ -188,10 +187,10 @@ carryOn = True
 clock = pygame.time.Clock()
 
 #create button objects
-button_01 = Button("Settings", (SCREENWIDTH/2, SCREENHEIGHT/3), my_settings_function)
+button_01 = Button("Settings", (SCREENWIDTH*2/3, SCREENHEIGHT*3.2/4), my_settings_function)
 button_02 = Button("Back", (SCREENWIDTH/2, SCREENHEIGHT/3), my_back_function)
-button_03 = Button("Quit", (SCREENWIDTH/2.4, SCREENHEIGHT*3.2/4), my_quit_function, bg=(50, 200, 20))
-button_04 = Button("PLAYGAME", (SCREENWIDTH/2, SCREENHEIGHT/1), my_playgame_function)
+button_03 = Button("Quit", (SCREENWIDTH*1/3, SCREENHEIGHT*3.2/4), my_quit_function, bg=(50, 200, 20))
+button_04 = Button("PLAYGAME", (SCREENWIDTH/2, SCREENHEIGHT/2), my_playgame_function)
 button_05 = Button("Sound", (SCREENWIDTH/2, SCREENHEIGHT/2), my_sound_function)
 button_06 = Button("Sound On", (SCREENWIDTH/4, SCREENHEIGHT/2), my_soundon_function)
 button_07 = Button("Sound Off", (SCREENWIDTH *3/4, SCREENHEIGHT/2), my_soundoff_function)
@@ -200,31 +199,28 @@ button_09 = Button("MainMenu", (SCREENWIDTH/2, SCREENHEIGHT*1/5),my_mainmenu_fun
 button_10 = Button("Instructions", (SCREENWIDTH/2, SCREENHEIGHT/2), my_instructions_function)
 button_11 = Button("Credits", (SCREENWIDTH/2, SCREENHEIGHT*3/4), my_credits_function)
 #Game title
-<<<<<<< HEAD
-fontTitle = pygame.font.Font('P:/ICSsummative/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 64)
-textSurfaceTitle = fontTitle.render('Indras!', True, GREY) 
-textRectTitle = textSurfaceTitle.get_rect()
-=======
-fontTitle = pygame.font.Font('P:/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 64)
+
+fontTitle = pygame.font.Font('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 64)
 textSurfaceTitle1 = fontTitle.render('Indras!', True, GREY) 
 textRectTitle1 = textSurfaceTitle1.get_rect()
 
 textRectTitle1.center = (380, 110)
 
-fontTitle = pygame.font.Font('P:/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 64)
+fontTitle = pygame.font.Font('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 64)
 textSurfaceTitle2 = fontTitle.render('Arrow!', True, GREY) 
 textRectTitle2 = textSurfaceTitle2.get_rect()
->>>>>>> 4343ab8ff483a5424c60cd48faa4cad85110abf9
 
 textRectTitle2.center = (380, 160)
 
 
 #arrange button groups depending on level
 level1_buttons = [button_01, button_03 , button_04]
-level2_buttons = [button_02, button_03 , button_05, button_06, button_07]
+level2_buttons = [button_02, button_05, button_06, button_07]
 level3_buttons = [button_09, button_10, button_11]
 level4_buttons = [button_02, button_09]
 level5_buttons = [button_02]
+level6_buttons = []
+level7_buttons = []
 level10_buttons = [button_09]
 #credits (level 10)
 # level3_buttons = [button_08]
