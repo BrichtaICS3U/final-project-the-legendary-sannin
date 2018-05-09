@@ -3,8 +3,8 @@
 
 import pygame, sys
 pygame.init()
-BackGround = pygame.image.load('P:/final-project-the-legendary-sannin/710573-most-popular-tobi-wallpaper-1920x1080-for-hd-1080p.jpg')
-
+BackGround1 = pygame.image.load('P:/final-project-the-legendary-sannin/710573-most-popular-tobi-wallpaper-1920x1080-for-hd-1080p.jpg')
+ #P:/maxresdefault.jpg
 #pygame.mixer.pre_init(frequency=44100, size=-16, channels=2, buffer=4096)
 #pygame.mixer.music.load('Naruto_Song.mp3')
 #pygame.mixer.music.play(-1)
@@ -187,8 +187,8 @@ clock = pygame.time.Clock()
 #create button objects
 button_01 = Button("Settings", (SCREENWIDTH/2, SCREENHEIGHT/3), my_settings_function)
 button_02 = Button("Back", (SCREENWIDTH/2, SCREENHEIGHT/3), my_back_function)
-button_03 = Button("Quit", (SCREENWIDTH/2.4, SCREENHEIGHT*3.2/4), my_quit_function, bg=(50, 200, 20))
-button_04 = Button("PLAYGAME", (SCREENWIDTH/2, SCREENHEIGHT/1), my_playgame_function)
+button_03 = Button("Quit", (SCREENWIDTH/2.7, SCREENHEIGHT*3.2/4), my_quit_function, bg=(50, 200, 20))
+button_04 = Button("PLAYGAME", (SCREENWIDTH/2, SCREENHEIGHT/1.5), my_playgame_function)
 button_05 = Button("Sound", (SCREENWIDTH/2, SCREENHEIGHT/2), my_sound_function)
 button_06 = Button("Sound On", (SCREENWIDTH/4, SCREENHEIGHT/2), my_soundon_function)
 button_07 = Button("Sound Off", (SCREENWIDTH *3/4, SCREENHEIGHT/2), my_soundoff_function)
@@ -209,6 +209,7 @@ textRectTitle2 = textSurfaceTitle2.get_rect()
 
 textRectTitle2.center = (380, 160)
 
+#screen.blit(BackGround1,(0,0))
 
 #arrange button groups depending on level
 level1_buttons = [button_01, button_03 , button_04]
@@ -234,16 +235,30 @@ while carryOn:
 
     # Clear the screen to white
     screen.fill(BLACK)
-    screen.blit(BackGround,(0,0))
+    
 
     screen.blit(textSurfaceTitle1, textRectTitle1)
     screen.blit(textSurfaceTitle2, textRectTitle2)
 
     # Draw buttons
     if level == 1:
+        fontTitle = pygame.font.Font('P:/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 64)
+        textSurfaceTitle1 = fontTitle.render('Indras!', True, GREY) 
+        textRectTitle1 = textSurfaceTitle1.get_rect()
+
+        textRectTitle1.center = (380, 110)
+
+        fontTitle = pygame.font.Font('P:/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 64)
+        textSurfaceTitle2 = fontTitle.render('Arrow!', True, GREY) 
+        textRectTitle2 = textSurfaceTitle2.get_rect()
+
+        textRectTitle2.center = (380, 160)
+        screen.blit(BackGround1,(0,0))
         for button in level1_buttons:
             button.draw()
+            
     elif level == 2:
+        
         for button in level2_buttons:
             button.draw()
     elif level == 3:
