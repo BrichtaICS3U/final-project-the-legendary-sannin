@@ -197,17 +197,7 @@ button_09 = Button("MainMenu", (SCREENWIDTH/2, SCREENHEIGHT*1/5),my_mainmenu_fun
 button_10 = Button("Instructions", (SCREENWIDTH/2, SCREENHEIGHT/2), my_instructions_function)
 button_11 = Button("Credits", (SCREENWIDTH/2, SCREENHEIGHT*3/4), my_credits_function)
 #Game title
-fontTitle = pygame.font.Font('P:/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 64)
-textSurfaceTitle1 = fontTitle.render('Indras!', True, GREY) 
-textRectTitle1 = textSurfaceTitle1.get_rect()
 
-textRectTitle1.center = (380, 110)
-
-fontTitle = pygame.font.Font('P:/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 64)
-textSurfaceTitle2 = fontTitle.render('Arrow!', True, GREY) 
-textRectTitle2 = textSurfaceTitle2.get_rect()
-
-textRectTitle2.center = (380, 160)
 
 #screen.blit(BackGround1,(0,0))
 
@@ -237,11 +227,13 @@ while carryOn:
     screen.fill(BLACK)
     
 
-    screen.blit(textSurfaceTitle1, textRectTitle1)
-    screen.blit(textSurfaceTitle2, textRectTitle2)
+    
 
     # Draw buttons
     if level == 1:
+        screen.blit(BackGround1,(0,0))
+        for button in level1_buttons:
+          button.draw()
         fontTitle = pygame.font.Font('P:/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 64)
         textSurfaceTitle1 = fontTitle.render('Indras!', True, GREY) 
         textRectTitle1 = textSurfaceTitle1.get_rect()
@@ -253,10 +245,9 @@ while carryOn:
         textRectTitle2 = textSurfaceTitle2.get_rect()
 
         textRectTitle2.center = (380, 160)
-        screen.blit(BackGround1,(0,0))
-        for button in level1_buttons:
-            button.draw()
-            
+
+        screen.blit(textSurfaceTitle1, textRectTitle1)
+        screen.blit(textSurfaceTitle2, textRectTitle2)           
     elif level == 2:
         
         for button in level2_buttons:
