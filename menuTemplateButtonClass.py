@@ -15,7 +15,7 @@ GRAY = (127, 127, 127)
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 BLUE = (0, 0, 255)
-
+BRED = (188, 16, 22)
 
 # Colour Palette
 DARK_BLUE = (12, 44, 82)
@@ -43,7 +43,7 @@ class Button():
        font_name = name of font
        font_size = size of font
     """
-    def __init__(self, txt, location, action, bg=WHITE, fg=BLACK, size=(100, 50), font_name="Segoe Print", font_size=16):
+    def __init__(self, txt, location, action, bg=BRED, fg=BLACK, size=(100, 50), font_name="Segoe Print", font_size=16):
         self.color = bg  # the static (normal) color
         self.bg = bg  # actual background color, can change on mouseover
         self.fg = fg  # text color
@@ -187,7 +187,7 @@ clock = pygame.time.Clock()
 button_01 = Button("Settings", (SCREENWIDTH/2, SCREENHEIGHT/3), my_settings_function)
 button_02 = Button("Back", (SCREENWIDTH/2, SCREENHEIGHT/3), my_back_function)
 button_03 = Button("Quit", (SCREENWIDTH/2.4, SCREENHEIGHT*3.2/4), my_quit_function, bg=(50, 200, 20))
-button_04 = Button("PLAYGAME", (SCREENWIDTH/2, SCREENHEIGHT/4.5), my_playgame_function)
+button_04 = Button("PLAYGAME", (SCREENWIDTH/2, SCREENHEIGHT/1), my_playgame_function)
 button_05 = Button("Sound", (SCREENWIDTH/2, SCREENHEIGHT/2), my_sound_function)
 button_06 = Button("Sound On", (SCREENWIDTH/4, SCREENHEIGHT/2), my_soundon_function)
 button_07 = Button("Sound Off", (SCREENWIDTH *3/4, SCREENHEIGHT/2), my_soundoff_function)
@@ -197,19 +197,26 @@ button_10 = Button("Instructions", (SCREENWIDTH/2, SCREENHEIGHT/2), my_instructi
 button_11 = Button("Credits", (SCREENWIDTH/2, SCREENHEIGHT*3/4), my_credits_function)
 #Game title
 fontTitle = pygame.font.Font('P:/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 64)
-textSurfaceTitle = fontTitle.render('Indras!', True, GREY) 
-textRectTitle = textSurfaceTitle.get_rect()
+textSurfaceTitle1 = fontTitle.render('Indras!', True, GREY) 
+textRectTitle1 = textSurfaceTitle1.get_rect()
 
-textRectTitle.center = (250, 50)
+textRectTitle1.center = (380, 110)
+
+fontTitle = pygame.font.Font('P:/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 64)
+textSurfaceTitle2 = fontTitle.render('Arrow!', True, GREY) 
+textRectTitle2 = textSurfaceTitle2.get_rect()
+
+textRectTitle2.center = (380, 160)
 
 
 #arrange button groups depending on level
 level1_buttons = [button_01, button_03 , button_04]
 level2_buttons = [button_02, button_03 , button_05, button_06, button_07]
-level3_buttons = [button_02, button_09, button_10, button_11]
+level3_buttons = [button_09, button_10, button_11]
 level4_buttons = [button_02, button_09]
 level5_buttons = [button_02]
 level10_buttons = [button_09]
+#credits (level 10)
 # level3_buttons = [button_08]
 #---------Main Program Loop----------
 while carryOn:
@@ -228,7 +235,8 @@ while carryOn:
     screen.fill(BLACK)
     screen.blit(BackGround,(0,0))
 
-    screen.blit(textSurfaceTitle, textRectTitle)
+    screen.blit(textSurfaceTitle1, textRectTitle1)
+    screen.blit(textSurfaceTitle2, textRectTitle2)
 
     # Draw buttons
     if level == 1:
