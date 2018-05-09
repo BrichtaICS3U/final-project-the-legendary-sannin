@@ -3,7 +3,7 @@
 
 import pygame, sys
 pygame.init()
-BackGround = pygame.image.load('P:/final-project-the-legendary-sannin/710573-most-popular-tobi-wallpaper-1920x1080-for-hd-1080p.jpg')
+BackGround = pygame.image.load('P:/ICSsummative/final-project-the-legendary-sannin/710573-most-popular-tobi-wallpaper-1920x1080-for-hd-1080p.jpg')
 
 #pygame.mixer.pre_init(frequency=44100, size=-16, channels=2, buffer=4096)
 #pygame.mixer.music.load('Naruto_Song.mp3')
@@ -13,7 +13,7 @@ BackGround = pygame.image.load('P:/final-project-the-legendary-sannin/710573-mos
 WHITE = (255, 255, 255)
 GRAY = (127, 127, 127)  
 BLACK = (0, 0, 0)
-RED = (255, 0, 0)
+RED = (188, 16, 22)
 BLUE = (0, 0, 255)
 
 
@@ -43,7 +43,7 @@ class Button():
        font_name = name of font
        font_size = size of font
     """
-    def __init__(self, txt, location, action, bg=WHITE, fg=BLACK, size=(100, 50), font_name="Segoe Print", font_size=16):
+    def __init__(self, txt, location, action, bg=RED, fg=BLACK, size=(100, 50), font_name="Segoe Print", font_size=16):
         self.color = bg  # the static (normal) color
         self.bg = bg  # actual background color, can change on mouseover
         self.fg = fg  # text color
@@ -196,7 +196,7 @@ button_09 = Button("MainMenu", (SCREENWIDTH/2, SCREENHEIGHT*1/5),my_mainmenu_fun
 button_10 = Button("Instructions", (SCREENWIDTH/2, SCREENHEIGHT/2), my_instructions_function)
 button_11 = Button("Credits", (SCREENWIDTH/2, SCREENHEIGHT*3/4), my_credits_function)
 #Game title
-fontTitle = pygame.font.Font('P:/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 64)
+fontTitle = pygame.font.Font('P:/ICSsummative/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 64)
 textSurfaceTitle = fontTitle.render('Indras!', True, GREY) 
 textRectTitle = textSurfaceTitle.get_rect()
 
