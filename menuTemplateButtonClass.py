@@ -3,8 +3,13 @@
 
 import pygame, sys
 pygame.init()
-BackGround = pygame.image.load('P:/ICSsummative/final-project-the-legendary-sannin/710573-most-popular-tobi-wallpaper-1920x1080-for-hd-1080p.jpg')
+BackGround1 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/710573-most-popular-tobi-wallpaper-1920x1080-for-hd-1080p.jpg')
+BackGround2 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/maxresdefault.jpg')
+BackGround3 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/893996-beautiful-cool-naruto-backgrounds-1920x1080.jpg')
+BackGround4 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/Naruto-Shipuden-Wallpaper-For-Desktop-93767272.jpg')
+BackGround5 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/grass_template_straightpath.jpg')
 
+ #P:/maxresdefault.jpg
 #pygame.mixer.pre_init(frequency=44100, size=-16, channels=2, buffer=4096)
 #pygame.mixer.music.load('Naruto_Song.mp3')
 #pygame.mixer.music.play(-1)
@@ -45,7 +50,7 @@ class Button():
        font_size = size of font
     """
 
-    def __init__(self, txt, location, action, bg=BRED, fg=BLACK, size=(100, 50), font_name="Segoe Print", font_size=16):
+    def __init__(self, txt, location, action, bg=BRED, fg=BLACK, size=(120, 50), font_name="Segoe Print", font_size=16):
         self.color = bg  # the static (normal) color
         self.bg = bg  # actual background color, can change on mouseover
         self.fg = fg  # text color
@@ -94,7 +99,7 @@ def my_settings_function():
 
 def my_playgame_function():
     global level
-    """A function that takesm you to instructions when pressed"""
+    """A function that takesm you to the game screen when pressed"""
     level += 2
     print('Game Start')
 
@@ -175,7 +180,10 @@ def mousebuttondown(level):
         for button in level5_buttons:
             if button.rect.collidepoint(pos):
                 button.call_back()
-
+    elif level == 6:
+        for button in level6_buttons:
+            if button.rect.collidepoint(pos):
+                button.call_back()
     elif level == 10:
         for button in level10_buttons:
             if button.rect.collidepoint(pos):
@@ -187,39 +195,31 @@ carryOn = True
 clock = pygame.time.Clock()
 
 #create button objects
-button_01 = Button("Settings", (SCREENWIDTH*2/3, SCREENHEIGHT*3.2/4), my_settings_function)
+button_01 = Button("Settings", (SCREENWIDTH*2/3.3, SCREENHEIGHT*3.5/4), my_settings_function)
 button_02 = Button("Back", (SCREENWIDTH/2, SCREENHEIGHT/3), my_back_function)
-button_03 = Button("Quit", (SCREENWIDTH*1/3, SCREENHEIGHT*3.2/4), my_quit_function, bg=(50, 200, 20))
-button_04 = Button("PLAYGAME", (SCREENWIDTH/2, SCREENHEIGHT/2), my_playgame_function)
+button_03 = Button("Quit", (SCREENWIDTH/2.7, SCREENHEIGHT*3.5/4), my_quit_function, bg=(50, 200, 20))
+button_04 = Button("Gemu Shimasu", (SCREENWIDTH/2, SCREENHEIGHT/2), my_playgame_function)
 button_05 = Button("Sound", (SCREENWIDTH/2, SCREENHEIGHT/2), my_sound_function)
 button_06 = Button("Sound On", (SCREENWIDTH/4, SCREENHEIGHT/2), my_soundon_function)
 button_07 = Button("Sound Off", (SCREENWIDTH *3/4, SCREENHEIGHT/2), my_soundoff_function)
 button_08 = Button("Next", (SCREENWIDTH/2, SCREENHEIGHT*2/3), my_next_function)
-button_09 = Button("MainMenu", (SCREENWIDTH/2, SCREENHEIGHT*1/5),my_mainmenu_function)
+button_09 = Button("MainMenu", (SCREENWIDTH/2, SCREENHEIGHT*1/5), my_mainmenu_function)
 button_10 = Button("Instructions", (SCREENWIDTH/2, SCREENHEIGHT/2), my_instructions_function)
 button_11 = Button("Credits", (SCREENWIDTH/2, SCREENHEIGHT*3/4), my_credits_function)
+button_12 = Button("Gemu Shimasu", (SCREENWIDTH/2 , SCREENHEIGHT*2/5), my_playgame_function)
+
 #Game title
 
-fontTitle = pygame.font.Font('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 64)
-textSurfaceTitle1 = fontTitle.render('Indras!', True, GREY) 
-textRectTitle1 = textSurfaceTitle1.get_rect()
 
-textRectTitle1.center = (380, 110)
-
-fontTitle = pygame.font.Font('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 64)
-textSurfaceTitle2 = fontTitle.render('Arrow!', True, GREY) 
-textRectTitle2 = textSurfaceTitle2.get_rect()
-
-textRectTitle2.center = (380, 160)
-
+#screen.blit(BackGround1,(0,0))
 
 #arrange button groups depending on level
 level1_buttons = [button_01, button_03 , button_04]
 level2_buttons = [button_02, button_05, button_06, button_07]
 level3_buttons = [button_09, button_10, button_11]
-level4_buttons = [button_02, button_09]
+level4_buttons = [button_09, button_12]
 level5_buttons = [button_02]
-level6_buttons = []
+level6_buttons = [button_09]
 level7_buttons = []
 level10_buttons = [button_09]
 #credits (level 10)
@@ -239,27 +239,79 @@ while carryOn:
 
     # Clear the screen to white
     screen.fill(BLACK)
-    screen.blit(BackGround,(0,0))
+    
 
-    screen.blit(textSurfaceTitle1, textRectTitle1)
-    screen.blit(textSurfaceTitle2, textRectTitle2)
+    
 
     # Draw buttons
     if level == 1:
+        screen.blit(BackGround1,(0,0))
         for button in level1_buttons:
-            button.draw()
-    elif level == 2:
+          button.draw()
+        fontTitle = pygame.font.Font('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 64)
+        textSurfaceTitle1 = fontTitle.render('Indras!', True, GREY) 
+        textRectTitle1 = textSurfaceTitle1.get_rect()
+
+        textRectTitle1.center = (380, 110)
+
+        fontTitle = pygame.font.Font('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 64)
+        textSurfaceTitle2 = fontTitle.render('Arrow!', True, GREY) 
+        textRectTitle2 = textSurfaceTitle2.get_rect()
+
+        textRectTitle2.center = (380, 160)
+
+        screen.blit(textSurfaceTitle1, textRectTitle1)
+        screen.blit(textSurfaceTitle2, textRectTitle2)           
+    elif level == 2:   
+        screen.blit(BackGround2,(0,0))
         for button in level2_buttons:
             button.draw()
     elif level == 3:
+        screen.blit(BackGround3,(0,0))
         for button in level3_buttons:
             button.draw()      
     elif level == 4:
+        screen.blit(BackGround4,(0,0))
         for button in level4_buttons:
-            button.draw() 
-    elif level == 5:
-        for button in level5_buttons:
             button.draw()
+            
+        fontTitle = pygame.font.Font('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 37)
+        textSurfaceTitle3 = fontTitle.render('Your village is being invaded', True, BLUE) 
+        textRectTitle3 = textSurfaceTitle3.get_rect()
+        textRectTitle3.center = (390, 400)
+        screen.blit(textSurfaceTitle3, textRectTitle3)
+
+        fontTitle = pygame.font.Font('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 37)
+        textSurfaceTitle4 = fontTitle.render('By enemy explosives. Defend', True, BLUE) 
+        textRectTitle4 = textSurfaceTitle4.get_rect()
+        textRectTitle4.center = (390, 460)
+        screen.blit(textSurfaceTitle4, textRectTitle4)
+
+
+        fontTitle = pygame.font.Font('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 37)
+        textSurfaceTitle5 = fontTitle.render('Your village from destruction. ', True, BLUE) 
+        textRectTitle5 = textSurfaceTitle5.get_rect()
+        textRectTitle5.center = (380, 520)
+        screen.blit(textSurfaceTitle5, textRectTitle5)
+
+        fontTitle = pygame.font.Font('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 37)
+        textSurfaceTitle6 = fontTitle.render('Use the cursor/mouse to pop enemy explosives!', True, BLUE) 
+        textRectTitle6 = textSurfaceTitle6.get_rect()
+        textRectTitle6.center = (400, 580)
+        screen.blit(textSurfaceTitle6, textRectTitle6)
+
+
+
+
+
+
+
+
+    elif level == 6:
+        screen.blit(BackGround5,(0,0))
+        for button in level6_buttons:
+            button.draw()
+            #game code
     elif level == 10:
         for button in level10_buttons:
             button.draw() 
