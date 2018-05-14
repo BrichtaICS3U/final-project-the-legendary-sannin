@@ -1,9 +1,10 @@
 # Menu template with button class and basic menu navigation
 # Adapted from http://www.dreamincode.net/forums/topic/401541-buttons-and-sliders-in-pygame/
-
+from balloon import Balloon
 import pygame, sys
 pygame.init()
 BackGround1 = pygame.image.load('P:/final-project-the-legendary-sannin/710573-most-popular-tobi-wallpaper-1920x1080-for-hd-1080p.jpg')
+ballonImage = pygame.image.load('P:/final-project-the-legendary-sannin/new-red-balloon-hi.png')
  #P:/maxresdefault.jpg
 #pygame.mixer.pre_init(frequency=44100, size=-16, channels=2, buffer=4096)
 #pygame.mixer.music.load('Naruto_Song.mp3')
@@ -30,7 +31,14 @@ SCREENHEIGHT = 710
 size = (SCREENWIDTH, SCREENHEIGHT)
 screen = pygame.display.set_mode(size)
 
+ALL_sprites_lists = pygame.sprite.Group()
+balloonImage = pygame.image.load("new-red-balloon-hi.png")
+Balloons = Balloon(balloonImage, 30, 40 ,5)
+ALL_sprites_lists.add(Balloons)
 
+for Balloon in ALL_sprites_lists:
+    Balloon.moveRight()
+    Balloon.rect.y > SCREENWIDTH
 
 class Button():
     """This is a class for a generic button.
@@ -151,8 +159,7 @@ def mousebuttondown(level):
     pos = pygame.mouse.get_pos()
     if level == 1:
 
-
-
+    
         
         for button in level1_buttons:
             if button.rect.collidepoint(pos):
@@ -173,7 +180,7 @@ def mousebuttondown(level):
         for button in level5_buttons:
             if button.rect.collidepoint(pos):
                 button.call_back()
-
+                ALL_sprites_lists = pygame.sprites.Group()
     elif level == 10:
         for button in level10_buttons:
             if button.rect.collidepoint(pos):
@@ -225,15 +232,13 @@ while carryOn:
 
     # Clear the screen to white
     screen.fill(BLACK)
-    
-
-    
 
     # Draw buttons
     if level == 1:
         screen.blit(BackGround1,(0,0))
         for button in level1_buttons:
           button.draw()
+          ALL_sprites_lists.draw(screen)
         fontTitle = pygame.font.Font('P:/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 64)
         textSurfaceTitle1 = fontTitle.render('Indras!', True, GREY) 
         textRectTitle1 = textSurfaceTitle1.get_rect()
@@ -249,7 +254,7 @@ while carryOn:
         screen.blit(textSurfaceTitle1, textRectTitle1)
         screen.blit(textSurfaceTitle2, textRectTitle2)           
     elif level == 2:
-        
+
         for button in level2_buttons:
             button.draw()
     elif level == 3:
