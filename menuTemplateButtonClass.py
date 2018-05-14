@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-# Menu template with button class and basic menu navigatio
-=======
 
 # Menu template with button class and basic menu navigation
->>>>>>> e159153a8a31ef4e4481223f6a2dc9c832a6c05e
+
 # Adapted from http://www.dreamincode.net/forums/topic/401541-buttons-and-sliders-in-pygame/
 from balloon import Balloon
 import pygame, sys
