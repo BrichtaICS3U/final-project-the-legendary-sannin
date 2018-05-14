@@ -1,4 +1,4 @@
-# Menu template with button class and basic menu navigation
+# Menu template with button class and basic menu navigatio
 # Adapted from http://www.dreamincode.net/forums/topic/401541-buttons-and-sliders-in-pygame/
 
 import pygame, sys
