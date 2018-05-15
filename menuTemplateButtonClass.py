@@ -2,12 +2,15 @@
 # Adapted from http://www.dreamincode.net/forums/topic/401541-buttons-and-sliders-in-pygame/
 
 import pygame, sys
+from balloon import Balloon
 pygame.init()
-BackGround1 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/710573-most-popular-tobi-wallpaper-1920x1080-for-hd-1080p.jpg')
-BackGround2 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/maxresdefault.jpg')
-BackGround3 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/893996-beautiful-cool-naruto-backgrounds-1920x1080.jpg')
-BackGround4 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/Naruto-Shipuden-Wallpaper-For-Desktop-93767272.jpg')
-BackGround5 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/grass_template_straightpath.jpg')
+BackGround1 = pygame.image.load('P:/final-project-the-legendary-sannin/710573-most-popular-tobi-wallpaper-1920x1080-for-hd-1080p.jpg')
+BackGround2 = pygame.image.load('P:/final-project-the-legendary-sannin/maxresdefault.jpg')
+BackGround3 = pygame.image.load('P:/final-project-the-legendary-sannin/893996-beautiful-cool-naruto-backgrounds-1920x1080.jpg')
+BackGround4 = pygame.image.load('P:/final-project-the-legendary-sannin/Naruto-Shipuden-Wallpaper-For-Desktop-93767272.jpg')
+BackGround5 = pygame.image.load('P:/final-project-the-legendary-sannin/grass_template_straightpath.jpg')
+
+
 
  #P:/maxresdefault.jpg
 #pygame.mixer.pre_init(frequency=44100, size=-16, channels=2, buffer=4096)
@@ -34,7 +37,6 @@ SCREENHEIGHT = 710
 
 size = (SCREENWIDTH, SCREENHEIGHT)
 screen = pygame.display.set_mode(size)
-
 
 
 class Button():
@@ -160,6 +162,7 @@ def mousebuttondown(level):
 
 
 
+
         
         for button in level1_buttons:
             if button.rect.collidepoint(pos):
@@ -194,6 +197,8 @@ level = 1
 carryOn = True
 clock = pygame.time.Clock()
 
+
+
 #create button objects
 button_01 = Button("Settings", (SCREENWIDTH*2/3.3, SCREENHEIGHT*3.5/4), my_settings_function)
 button_02 = Button("Back", (SCREENWIDTH/2, SCREENHEIGHT/3), my_back_function)
@@ -209,7 +214,14 @@ button_11 = Button("Credits", (SCREENWIDTH/2, SCREENHEIGHT*3/4), my_credits_func
 button_12 = Button("Gemu Shimasu", (SCREENWIDTH/2 , SCREENHEIGHT*2/5), my_playgame_function)
 
 #Game title
+ALL_sprites_lists = pygame.sprite.Group()
+balloonImage = pygame.image.load("new-red-balloon-hi.png")
+Balloons = Balloon(balloonImage, 30, 40 ,5)
+ALL_sprites_lists.add(Balloons)
 
+for Balloon in ALL_sprites_lists:
+    Balloon.moveRight()
+    Balloon.rect.y > SCREENWIDTH
 
 #screen.blit(BackGround1,(0,0))
 
@@ -248,13 +260,14 @@ while carryOn:
         screen.blit(BackGround1,(0,0))
         for button in level1_buttons:
           button.draw()
-        fontTitle = pygame.font.Font('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 64)
+        ALL_sprites_lists.draw(screen)
+        fontTitle = pygame.font.Font('P:/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 64)
         textSurfaceTitle1 = fontTitle.render('Indras!', True, GREY) 
         textRectTitle1 = textSurfaceTitle1.get_rect()
 
         textRectTitle1.center = (380, 110)
 
-        fontTitle = pygame.font.Font('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 64)
+        fontTitle = pygame.font.Font('P:/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 64)
         textSurfaceTitle2 = fontTitle.render('Arrow!', True, GREY) 
         textRectTitle2 = textSurfaceTitle2.get_rect()
 
@@ -275,26 +288,26 @@ while carryOn:
         for button in level4_buttons:
             button.draw()
             
-        fontTitle = pygame.font.Font('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 37)
+        fontTitle = pygame.font.Font('P:/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 37)
         textSurfaceTitle3 = fontTitle.render('Your village is being invaded', True, BLUE) 
         textRectTitle3 = textSurfaceTitle3.get_rect()
         textRectTitle3.center = (390, 400)
         screen.blit(textSurfaceTitle3, textRectTitle3)
 
-        fontTitle = pygame.font.Font('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 37)
+        fontTitle = pygame.font.Font('P:/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 37)
         textSurfaceTitle4 = fontTitle.render('By enemy explosives. Defend', True, BLUE) 
         textRectTitle4 = textSurfaceTitle4.get_rect()
         textRectTitle4.center = (390, 460)
         screen.blit(textSurfaceTitle4, textRectTitle4)
 
 
-        fontTitle = pygame.font.Font('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 37)
+        fontTitle = pygame.font.Font('P:/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 37)
         textSurfaceTitle5 = fontTitle.render('Your village from destruction. ', True, BLUE) 
         textRectTitle5 = textSurfaceTitle5.get_rect()
         textRectTitle5.center = (380, 520)
         screen.blit(textSurfaceTitle5, textRectTitle5)
 
-        fontTitle = pygame.font.Font('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 37)
+        fontTitle = pygame.font.Font('P:/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 37)
         textSurfaceTitle6 = fontTitle.render('Use the cursor/mouse to pop enemy explosives!', True, BLUE) 
         textRectTitle6 = textSurfaceTitle6.get_rect()
         textRectTitle6.center = (400, 580)
@@ -320,6 +333,8 @@ while carryOn:
 
     # --- Limit to 60 frames per second
     clock.tick(60)
+
+
 
 pygame.quit()
 
