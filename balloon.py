@@ -16,7 +16,7 @@ class Balloon(pygame.sprite.Sprite):
         print(self.rect.y)
 
     def moveRight(self):
-        # speed = 2
+        speed = 2
         self.rect.x += self.speed
         if self.rect.x > SCREENWIDTH:
             self.rect.x = -100
