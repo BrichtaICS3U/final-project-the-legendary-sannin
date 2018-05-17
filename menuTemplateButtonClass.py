@@ -1,7 +1,7 @@
 
 # Adapted from http://www.dreamincode.net/forums/topic/401541-buttons-and-sliders-in-pygame/
 
-import pygame, sys
+import pygame, sys, random
 from balloon import Balloon
 pygame.init()
 
@@ -198,7 +198,12 @@ level = 1
 carryOn = True
 clock = pygame.time.Clock()
 
-
+ALL_sprites_lists = pygame.sprite.Group()
+BalloonImage = pygame.image.load("new-red-balloon-hi.png")
+for i in range(5):
+    myBalloon = Balloon(BalloonImage, 30, 70, 5)
+    myBalloon.rect.x = random.randint(-2100,0)
+    ALL_sprites_lists.add(myBalloon)
 
 #create button objects
 button_01 = Button("Settings", (SCREENWIDTH*2/3.3, SCREENHEIGHT*3.5/4), my_settings_function)
@@ -315,18 +320,16 @@ while carryOn:
 
 
     elif level == 6:
+        if event.type == pygame.MOUSEBUTTONDOWN:
+             pygame.sprite.Sprite.remove
         screen.blit(BackGround5,(0,0))
         for button in level6_buttons:
             button.draw()
-            ALL_sprites_lists = pygame.sprite.Group()
-        balloonImage = pygame.image.load("new-red-balloon-hi.png")
-        Balloons = Balloon(balloonImage, 30, 70 ,5)
-        ALL_sprites_lists.add(Balloons)
 
         for Balloon in ALL_sprites_lists:
             Balloon.moveRight()
-            Balloon.rect.y > SCREENWIDTH
-            ALL_sprites_lists.draw(screen)
+            #Balloon.rect.y > SCREENWIDTH
+        ALL_sprites_lists.draw(screen)
             #game code
     elif level == 10:
         for button in level10_buttons:
