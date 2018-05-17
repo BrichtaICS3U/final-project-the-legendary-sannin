@@ -12,7 +12,7 @@ class Balloon(pygame.sprite.Sprite):
         self.speed = speed
 
     def moveRight(self):
-        # speed = 2
+        speed = 2
         self.rect.x += self.speed
 
     def draw(self, screen):

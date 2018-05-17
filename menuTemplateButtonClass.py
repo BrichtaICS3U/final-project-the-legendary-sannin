@@ -1,13 +1,13 @@
 
 # Adapted from http://www.dreamincode.net/forums/topic/401541-buttons-and-sliders-in-pygame/
-
+#https://stackoverflow.com/questions/21947389/how-to-continuously-move-an-image-in-pygame
 import pygame, sys
 from balloon import Balloon
 pygame.init()
 BackGround1 = pygame.image.load('P:/final-project-the-legendary-sannin/710573-most-popular-tobi-wallpaper-1920x1080-for-hd-1080p.jpg')
 BackGround2 = pygame.image.load('P:/final-project-the-legendary-sannin/maxresdefault.jpg')
 BackGround3 = pygame.image.load('P:/final-project-the-legendary-sannin/893996-beautiful-cool-naruto-backgrounds-1920x1080.jpg')
-BackGround4 = pygame.image.load('P:/final-project-the-legendary-sannin/Naruto-Shipuden-Wallpaper-For-Desktop-93767272.jpg')
+BackGround4 = pygame.image.load('P:/final-project-the-legendary-sannin/Nijū_Shōtai_Raidō.png')
 BackGround5 = pygame.image.load('P:/final-project-the-legendary-sannin/grass_template_straightpath.jpg')
 
 
@@ -25,7 +25,7 @@ RED = (188, 16, 22)
 BLUE = (0, 0, 255)
 BRED = (188, 16, 22)
 BBRED = (216, 15, 21)
-
+TEA = (208, 240, 192)
 # Colour Palette
 DARK_BLUE = (12, 44, 82)
 GREY = (95, 107, 97)
@@ -155,15 +155,11 @@ def my_mainmenu_function():
     
 
 def mousebuttondown(level):
-    """A function that checks which button ):
+    """A function th        screen.blit(BackGround3,(0,0))
+at checks which button ):
                 was pressed"""
     pos = pygame.mouse.get_pos()
     if level == 1:
-
-
-
-
-        
         for button in level1_buttons:
             if button.rect.collidepoint(pos):
                 button.call_back()
@@ -212,12 +208,15 @@ button_09 = Button("MainMenu", (SCREENWIDTH/2, SCREENHEIGHT*1/5), my_mainmenu_fu
 button_10 = Button("Instructions", (SCREENWIDTH/2, SCREENHEIGHT/2), my_instructions_function)
 button_11 = Button("Credits", (SCREENWIDTH/2, SCREENHEIGHT*3/4), my_credits_function)
 button_12 = Button("Gemu Shimasu", (SCREENWIDTH/2 , SCREENHEIGHT*2/5), my_playgame_function)
+button_13 = Button("MainMenu", (SCREENWIDTH/2.7, SCREENHEIGHT*2.5/5), my_mainmenu_function) # level 4 main menu
+button_14 = Button("Gemu Shimasu", (SCREENWIDTH/1.6 , SCREENHEIGHT*2.5/5), my_playgame_function) #level 4 game start
 
 #Game title
 ALL_sprites_lists = pygame.sprite.Group()
 balloonImage = pygame.image.load("new-red-balloon-hi.png")
-Balloons = Balloon(balloonImage, 30, 40 ,5)
+Balloons = Balloon(balloonImage, 30, 40 , -10)
 ALL_sprites_lists.add(Balloons)
+
 
 for Balloon in ALL_sprites_lists:
     Balloon.moveRight()
@@ -229,7 +228,7 @@ for Balloon in ALL_sprites_lists:
 level1_buttons = [button_01, button_03 , button_04]
 level2_buttons = [button_02, button_05, button_06, button_07]
 level3_buttons = [button_09, button_10, button_11]
-level4_buttons = [button_09, button_12]
+level4_buttons = [button_13, button_14,] 
 level5_buttons = [button_02]
 level6_buttons = [button_09]
 level7_buttons = []
@@ -240,7 +239,7 @@ level10_buttons = [button_09]
 while carryOn:
     # --- Main event loop ---
     for event in pygame.event.get(): # Player did something
-        if event.type == pygame.QUIT: # Player clicked close button
+        if event.type == pygame.QUIT: # Player clicked close bTEAutton
             carryOn = False
         elif event.type == pygame.MOUSEBUTTONDOWN: # Player clicked the mouse
             mousebuttondown(level)
@@ -260,7 +259,6 @@ while carryOn:
         screen.blit(BackGround1,(0,0))
         for button in level1_buttons:
           button.draw()
-        ALL_sprites_lists.draw(screen)
         fontTitle = pygame.font.Font('P:/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 64)
         textSurfaceTitle1 = fontTitle.render('Indras!', True, GREY) 
         textRectTitle1 = textSurfaceTitle1.get_rect()
@@ -289,28 +287,33 @@ while carryOn:
             button.draw()
             
         fontTitle = pygame.font.Font('P:/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 37)
-        textSurfaceTitle3 = fontTitle.render('Your village is being invaded', True, BLUE) 
+        textSurfaceTitle3 = fontTitle.render('Your village is being invaded', True, TEA) 
         textRectTitle3 = textSurfaceTitle3.get_rect()
-        textRectTitle3.center = (390, 400)
+        textRectTitle3.center = (390, 250)
         screen.blit(textSurfaceTitle3, textRectTitle3)
 
         fontTitle = pygame.font.Font('P:/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 37)
-        textSurfaceTitle4 = fontTitle.render('By enemy explosives. Defend', True, BLUE) 
+        textSurfaceTitle4 = fontTitle.render('By enemy explosives.', True, TEA) 
         textRectTitle4 = textSurfaceTitle4.get_rect()
-        textRectTitle4.center = (390, 460)
+        textRectTitle4.center = (390, 290)
         screen.blit(textSurfaceTitle4, textRectTitle4)
 
-
         fontTitle = pygame.font.Font('P:/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 37)
-        textSurfaceTitle5 = fontTitle.render('Your village from destruction. ', True, BLUE) 
+        textSurfaceTitle5 = fontTitle.render('Defend, ', True, TEA) 
         textRectTitle5 = textSurfaceTitle5.get_rect()
-        textRectTitle5.center = (380, 520)
+        textRectTitle5.center = (390, 400)
         screen.blit(textSurfaceTitle5, textRectTitle5)
 
         fontTitle = pygame.font.Font('P:/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 37)
-        textSurfaceTitle6 = fontTitle.render('Use the cursor/mouse to pop enemy explosives!', True, BLUE) 
+        textSurfaceTitle5 = fontTitle.render('Your village from destruction. ', True, TEA) 
+        textRectTitle5 = textSurfaceTitle5.get_rect()
+        textRectTitle5.center = (390, 440)
+        screen.blit(textSurfaceTitle5, textRectTitle5)
+
+        fontTitle = pygame.font.Font('P:/final-project-the-legendary-sannin/gomarice_no_continue.ttf', 37)
+        textSurfaceTitle6 = fontTitle.render('Use the cursor/mouse to pop enemy explosives!', True, TEA) 
         textRectTitle6 = textSurfaceTitle6.get_rect()
-        textRectTitle6.center = (400, 580)
+        textRectTitle6.center = (395, 480)
         screen.blit(textSurfaceTitle6, textRectTitle6)
 
 
@@ -324,6 +327,7 @@ while carryOn:
         screen.blit(BackGround5,(0,0))
         for button in level6_buttons:
             button.draw()
+            ALL_sprites_lists.draw(screen)
             #game code
     elif level == 10:
         for button in level10_buttons:
