@@ -11,7 +11,7 @@ BackGround2 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsumma
 BackGround3 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/893996-beautiful-cool-naruto-backgrounds-1920x1080.jpg')
 BackGround4 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/Nijū_Shōtai_Raidō.png')
 BackGround5 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/grass_template_straightpath.jpg')
-
+BackGround6 = pygame.image.load('')
 #https://stackoverflow.com/questions/21947389/how-to-continuously-move-an-image-in-pygame
 import pygame, sys
 from balloon import Balloon
