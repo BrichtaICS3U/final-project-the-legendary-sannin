@@ -11,7 +11,7 @@ class Balloon(pygame.sprite.Sprite):
         self.image = picture
         self.rect = self.image.get_rect()
         self.speed = speed
-        self.rect.y = -200
+        self.rect.y = -195
         print(self.rect.x)
         print(self.rect.y)
 

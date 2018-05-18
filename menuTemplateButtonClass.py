@@ -223,13 +223,6 @@ button_13 = Button("MainMenu", (SCREENWIDTH/2.7, SCREENHEIGHT*2.5/5), my_mainmen
 button_14 = Button("Gemu Shimasu", (SCREENWIDTH/1.6 , SCREENHEIGHT*2.5/5), my_playgame_function) #level 4 game start
 
 #Game title
-
-ALL_sprites_lists = pygame.sprite.Group()
-balloonImage = pygame.image.load("new-red-balloon-hi.png")
-Balloons = Balloon(balloonImage, 30, 40 , -10)
-ALL_sprites_lists.add(Balloons)
-
-
 for Balloon in ALL_sprites_lists:
     Balloon.moveRight()
     Balloon.rect.y > SCREENWIDTH
