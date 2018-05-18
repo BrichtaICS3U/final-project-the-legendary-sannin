@@ -7,9 +7,9 @@ class Balloon(pygame.sprite.Sprite):
     def __init__(self,picture,width,height,speed):
 
         super().__init__()
-
         self.image = picture
         self.rect = self.image.get_rect()
+        self.mask = pygame.mask.from_surface(self.image)
         self.speed = speed
         self.rect.y = -200
         print(self.rect.x)

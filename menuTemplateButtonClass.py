@@ -6,11 +6,11 @@ import pygame, sys, random
 from balloon import Balloon
 pygame.init()
 
-BackGround1 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/710573-most-popular-tobi-wallpaper-1920x1080-for-hd-1080p.jpg')
-BackGround2 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/maxresdefault (2).jpg')
-BackGround3 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/893996-beautiful-cool-naruto-backgrounds-1920x1080.jpg')
-BackGround4 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/Nijū_Shōtai_Raidō.png')
-BackGround5 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/grass_template_straightpath.jpg')
+BackGround1 = pygame.image.load('P:/final-project-the-legendary-sannin/710573-most-popular-tobi-wallpaper-1920x1080-for-hd-1080p.jpg')
+BackGround2 = pygame.image.load('P:/final-project-the-legendary-sannin/maxresdefault (2).jpg')
+BackGround3 = pygame.image.load('P:/final-project-the-legendary-sannin/893996-beautiful-cool-naruto-backgrounds-1920x1080.jpg')
+BackGround4 = pygame.image.load('P:/final-project-the-legendary-sannin/Nijū_Shōtai_Raidō.png')
+BackGround5 = pygame.image.load('P:/final-project-the-legendary-sannin/grass_template_straightpath.jpg')
 
 #https://stackoverflow.com/questions/21947389/how-to-continuously-move-an-image-in-pygame
 import pygame, sys
@@ -201,10 +201,12 @@ clock = pygame.time.Clock()
 
 ALL_sprites_lists = pygame.sprite.Group()
 BalloonImage = pygame.image.load("new-red-balloon-hi.png")
-for i in range(5):
+for i in range(10):
     myBalloon = Balloon(BalloonImage, 30, 70, 5)
     myBalloon.rect.x = random.randint(-2100,0)
     ALL_sprites_lists.add(myBalloon)
+    
+
 
 #create button objects
 button_01 = Button("Settings", (SCREENWIDTH*2/3.3, SCREENHEIGHT*3.5/4), my_settings_function)
@@ -223,16 +225,6 @@ button_13 = Button("MainMenu", (SCREENWIDTH/2.7, SCREENHEIGHT*2.5/5), my_mainmen
 button_14 = Button("Gemu Shimasu", (SCREENWIDTH/1.6 , SCREENHEIGHT*2.5/5), my_playgame_function) #level 4 game start
 
 #Game title
-
-ALL_sprites_lists = pygame.sprite.Group()
-balloonImage = pygame.image.load("new-red-balloon-hi.png")
-Balloons = Balloon(balloonImage, 30, 40 , -10)
-ALL_sprites_lists.add(Balloons)
-
-
-for Balloon in ALL_sprites_lists:
-    Balloon.moveRight()
-    Balloon.rect.y > SCREENWIDTH
 
 
 #screen.blit(BackGround1,(0,0))
@@ -333,11 +325,6 @@ while carryOn:
         textRectTitle6 = textSurfaceTitle6.get_rect()
         textRectTitle6.center = (395, 480)
         screen.blit(textSurfaceTitle6, textRectTitle6)
-
-
-
-
-
 
 
 
