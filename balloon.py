@@ -20,6 +20,6 @@ class Balloon(pygame.sprite.Sprite):
         self.rect.x += self.speed
         if self.rect.x > SCREENWIDTH:
             self.rect.x = -100
-
+            
     def draw(self, screen):
         screen.blit(self.image, self.rect)
