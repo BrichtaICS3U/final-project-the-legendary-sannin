@@ -1,18 +1,29 @@
 
+
 # Adapted from http://www.dreamincode.net/forums/topic/401541-buttons-and-sliders-in-pygame/
 
-
+# for balloon in Balloon:
+# if Balloon.rect.collidepoint(pos):
+# pygame.sprite.Sprite.remove
 import pygame, sys, random
 from balloon import Balloon
 from car import Car
 pygame.init()
 
+<<<<<<< HEAD
 BackGround1 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/710573-most-popular-tobi-wallpaper-1920x1080-for-hd-1080p.jpg')
 BackGround2 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/images (1).jpg')
 BackGround3 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/893996-beautiful-cool-naruto-backgrounds-1920x1080.jpg')
 BackGround4 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/Nijū_Shōtai_Raidō.png')
 BackGround5 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/grass_template_straightpath.jpg')
 BackGround6 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/-Naruto-Goodbye-Daddy-uzumaki-naruto-shippuuden-37545372-500-281.jpg')
+=======
+BackGround1 = pygame.image.load('P:/final-project-the-legendary-sannin/710573-most-popular-tobi-wallpaper-1920x1080-for-hd-1080p.jpg')
+BackGround2 = pygame.image.load('P:/final-project-the-legendary-sannin/maxresdefault (2).jpg')
+BackGround3 = pygame.image.load('P:/final-project-the-legendary-sannin/893996-beautiful-cool-naruto-backgrounds-1920x1080.jpg')
+BackGround4 = pygame.image.load('P:/final-project-the-legendary-sannin/Nijū_Shōtai_Raidō.png')
+BackGround5 = pygame.image.load('P:/final-project-the-legendary-sannin/grass_template_straightpath.jpg')
+>>>>>>> 5a0a7a71b0ea25cecc6c66f7a11704693d415d1e
 #https://stackoverflow.com/questions/21947389/how-to-continuously-move-an-image-in-pygame
 import pygame, sys
 pygame.init()
@@ -158,11 +169,21 @@ def my_mainmenu_function():
     """A funtion that will return you to the main menu"""
     global level
     level = 1
+<<<<<<< HEAD
 
 def remove():
     'A function that removes a sprite'
     
+=======
+>>>>>>> 5a0a7a71b0ea25cecc6c66f7a11704693d415d1e
 
+def pop():
+    pos = pygame.mouse.get_pos()
+    for balloon in Balloon:
+        if Balloon.rect.collidepoint(pos):
+            pygame.sprite.Sprite.remove
+            print("POP")
+        
 def mousebuttondown(level):
     """A function th        screen.blit(BackGround3,(0,0))
 at checks which button ):
@@ -191,7 +212,8 @@ at checks which button ):
     elif level == 6:
         for button in level6_buttons:
             if button.rect.collidepoint(pos):
-                button.call_back()
+             for balloon in Balloon:
+                    button.call_back()
     elif level == 10:
         for button in level10_buttons:
             if button.rect.collidepoint(pos):
@@ -202,12 +224,21 @@ level = 1
 carryOn = True
 clock = pygame.time.Clock()
 
+<<<<<<< HEAD
 #ALL_sprites_lists = pygame.sprite.Group()
 #BalloonImage = pygame.image.load("new-red-balloon-hi.png")
 #for i in range(5):
    # myBalloon = Balloon(BalloonImage, 30, 70, 5)
    # myBalloon.rect.x = random.randint(-2100,0)
    # ALL_sprites_lists.add(myBalloon)
+=======
+ALL_sprites_lists = pygame.sprite.Group()
+BalloonImage1 = pygame.image.load("P:/final-project-the-legendary-sannin/new-red-balloon-hi.png")
+for i in range(5):
+    myBalloon = Balloon(BalloonImage1, 30, 70, 5)
+    myBalloon.rect.x = random.randint(-2100,0)
+    ALL_sprites_lists.add(myBalloon)
+>>>>>>> 5a0a7a71b0ea25cecc6c66f7a11704693d415d1e
 
 #create button objects
 button_01 = Button("Settings", (SCREENWIDTH*2/3.3, SCREENHEIGHT*3.5/4), my_settings_function)
@@ -251,7 +282,10 @@ while carryOn:
         if event.type == pygame.QUIT: # Player clicked close bTEAutton
             carryOn = False
         elif event.type == pygame.MOUSEBUTTONDOWN: # Player clicked the mouse
-            mousebuttondown(level)
+            if level <= 6:
+                mousebuttondown(level)
+            else:
+                pygame.sprite.Sprite = pop
 
     # --- Game logic goes here
 
@@ -333,6 +367,7 @@ while carryOn:
 
 
 
+<<<<<<< HEAD
 
 #bx2 += 5
 #bx3 += 5
@@ -345,6 +380,9 @@ while carryOn:
     elif level == 6:
         event.type == pygame.MOUSEBUTTONDOWN 
         pygame.sprite.Sprite.remove
+=======
+    elif level == 6:
+>>>>>>> 5a0a7a71b0ea25cecc6c66f7a11704693d415d1e
         screen.blit(BackGround5,(0,0))
         all_sprites_list = pygame.sprite.Group()
         all_sprites_list.update()
@@ -359,6 +397,7 @@ while carryOn:
         all_sprites_list.add(playerCar)
         for button in level6_buttons:
             button.draw()
+<<<<<<< HEAD
 
 
         #for Balloon in ALL_sprites_lists:
@@ -367,6 +406,12 @@ while carryOn:
         
 
         #ALL_sprites_lists.draw(screen)
+=======
+        for Balloon in ALL_sprites_lists:
+            Balloon.moveRight()
+            #Balloon.rect.y > SCREENWIDTH
+        ALL_sprites_lists.draw(screen)
+>>>>>>> 5a0a7a71b0ea25cecc6c66f7a11704693d415d1e
             #game code
     elif level == 10:
         screen.blit(BackGround6,(0,0))
