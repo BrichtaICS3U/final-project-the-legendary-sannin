@@ -1,5 +1,7 @@
 import pygame
 WHITE = (255, 255, 255)
+RED = (188, 16, 22)
+
  
 class Car(pygame.sprite.Sprite):
     #This class represents a car. It derives from the "Sprite" class in Pygame.
@@ -12,7 +14,7 @@ class Car(pygame.sprite.Sprite):
         # Set the background color and set it to be transparent
         self.image = pygame.Surface([width, height])
         self.image.fill(WHITE)
-        self.image.set_colorkey(WHITE)
+        self.image.set_colorkey(RED)
  
         # Draw the car (a rectangle!)
         pygame.draw.rect(self.image, color, [0, 0, width, height])
