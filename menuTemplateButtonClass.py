@@ -161,12 +161,14 @@ def my_mainmenu_function():
     global level
     level = 1
 
-def pop():
-    pos = pygame.mouse.get_pos()
+def pop(score):
+    pos =pygame.mouse.get_pos()
+    Pop = False
     for balloon in Balloon:
         if Balloon.rect.collidepoint(pos):
-            pygame.sprite.Sprite.remove
-            print("POP")
+            Pop = True
+            score += 1
+        print ("gang gang finna work")
         
 def mousebuttondown(level):
     """A function th        screen.blit(BackGround3,(0,0))
@@ -260,7 +262,7 @@ while carryOn:
             if level <= 6:
                 mousebuttondown(level)
             else:
-                pygame.sprite.Sprite = pop
+                score = pop(score)
 
     # --- Game logic goes here
 
@@ -343,7 +345,7 @@ while carryOn:
 
 
     elif level == 6:
-        screen.blit(BackGround5,(0,0))
+        #screen.blit(BackGround5,(0,0))
         for button in level6_buttons:
             button.draw()
         for Balloon in ALL_sprites_lists:
