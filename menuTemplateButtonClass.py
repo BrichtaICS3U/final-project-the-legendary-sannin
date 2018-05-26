@@ -10,11 +10,11 @@ from balloon import Balloon
 from car import Car
 pygame.init()
 
-BackGround1 = pygame.image.load('P:/final-project-the-legendary-sannin/710573-most-popular-tobi-wallpaper-1920x1080-for-hd-1080p.jpg')
-BackGround2 = pygame.image.load('P:/final-project-the-legendary-sannin/maxresdefault (2).jpg')
-BackGround3 = pygame.image.load('P:/final-project-the-legendary-sannin/893996-beautiful-cool-naruto-backgrounds-1920x1080.jpg')
-BackGround4 = pygame.image.load('P:/final-project-the-legendary-sannin/Nijū_Shōtai_Raidō.png')
-BackGround5 = pygame.image.load('P:/final-project-the-legendary-sannin/grass_template_straightpath.jpg')
+BackGround1 = pygame.image.load('710573-most-popular-tobi-wallpaper-1920x1080-for-hd-1080p.jpg')
+BackGround2 = pygame.image.load('maxresdefault (2).jpg')
+BackGround3 = pygame.image.load('893996-beautiful-cool-naruto-backgrounds-1920x1080.jpg')
+BackGround4 = pygame.image.load('Nijū_Shōtai_Raidō.png')
+BackGround5 = pygame.image.load('grass_template_straightpath.jpg')
 
 #https://stackoverflow.com/questions/21947389/how-to-continuously-move-an-image-in-pygame
 import pygame, sys
@@ -213,10 +213,11 @@ clock = pygame.time.Clock()
 
 
 ALL_sprites_lists = pygame.sprite.Group()
-BalloonImage1 = pygame.image.load("P:/final-project-the-legendary-sannin/new-red-balloon-hi.png")
+BalloonImage1 = pygame.image.load("blue-balloon-hi.png")
 for i in range(5):
     myBalloon = Balloon(BalloonImage1, 30, 70, 5)
     myBalloon.rect.x = random.randint(-2100,0)
+    myBalloon.rect.y = 0
     ALL_sprites_lists.add(myBalloon)
 
 
@@ -349,14 +350,19 @@ while carryOn:
 
 
     elif level == 6:
-        #screen.blit(BackGround5,(0,0))
+        #game code
+
+        #update positions of balloons
+        for Balloon in ALL_sprites_lists:
+            Balloon.moveRight()
+
+        #draw background, buttons and sprites
         screen.blit(BackGround5,(0,0))
         for button in level6_buttons:
             button.draw()
-        for Balloon in ALL_sprites_lists:
-            Balloon.moveRight() #Balloon.rect.y > SCREENWIDTH
-            ALL_sprites_lists.draw(screen)
-            #game code
+
+        ALL_sprites_lists.draw(screen)
+            
     elif level == 10:
         screen.blit(BackGround6,(0,0))
         for button in level10_buttons:
