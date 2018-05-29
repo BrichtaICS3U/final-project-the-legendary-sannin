@@ -15,6 +15,7 @@ BackGround4 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsumma
 BackGround5 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/grass_template_straightpath.jpg')
 BackGround6 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/-Naruto-Goodbye-Daddy-uzumaki-naruto-shippuuden-37545372-500-281.jpg')
 
+
 #https://stackoverflow.com/questions/21947389/how-to-continuously-move-an-image-in-pygame
 import pygame, sys
 pygame.init()
@@ -96,6 +97,17 @@ class Button():
         if self.rect.collidepoint(pos):
             self.bg = BBRED  # mouseover color
 
+
+    def mouseBalloondown():
+        pos = pygame.mouse.get_pos()
+        Hit = False
+        for balloon in Balloon:
+         if balloon.image.collidepoint(pos):
+            Hit = True
+            balloon.image.y = (900)
+            balloon.image.x = (900) 
+            myBalloon = balloon(balloonImage1, 70, 70, 5)
+
     def call_back(self):
         """Runs a function when clicked"""
         self.call_back_()
@@ -163,9 +175,21 @@ def my_mainmenu_function():
     global level
     level = 1
 
+
 def my_display_function(screen,self):
     BackGround5 = Pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/grass_template_straightpath.jpg')
     'A function that allows sprite to be shown'
+
+
+
+def pop(score):
+    pos =pygame.mouse.get_pos()
+    Pop = False
+    for balloon in Balloon:
+        if Balloon.rect.collidepoint(pos):
+            Pop = True
+            score += 1
+        print ("gang gang finna work")
 
         
 def mousebuttondown(level):
@@ -209,6 +233,14 @@ carryOn = True
 clock = pygame.time.Clock()
 
 
+
+ALL_sprites_lists = pygame.sprite.Group()
+BalloonImage1 = pygame.image.load("blue-balloon-hi.png")
+for i in range(5):
+    myBalloon = Balloon(BalloonImage1, 70, 70, 5)
+    myBalloon.rect.x = random.randint(-2100,0)
+    myBalloon.rect.y = 355
+    ALL_sprites_lists.add(myBalloon)
 
 
 
@@ -257,7 +289,7 @@ while carryOn:
             if level <= 6:
                 mousebuttondown(level)
             else:
-                pygame.sprite.Sprite = pop
+                score = pop(score)
 
     # --- Game logic goes here
 
@@ -338,28 +370,39 @@ while carryOn:
 
 
 
+    
 
 
 
-#bx2 += 5
-#bx3 += 5
-#bx4 += 5
-#bx5 += 5
-#by = SCREENHEIGHT/2
-        speed = 5
-       
+
 
 
     elif level == 6:
-        #screen.blit(BackGround5, (0,0))
-        playerBalloon = Balloon(RED, 30, 30, 5)
-        playerBalloon.rect.x = -75
-        playerBalloon.rect.y = 355
-        pygame.draw.rect = (RED, 30 , 30 , 5)
-        all_sprites_list.add(playerBalloon)
-        all_sprites_list.draw(screen)
+        #game code
+        if pygame.mouse.get_pressed()[0] and balloon.image.collidepoint(pygame.mouse.get_pos()):
+         pygame.Balloon1.Sprite.remove
+        x = 100
+        #update positions of balloons
+        for Balloon in ALL_sprites_lists:
+            Balloon.moveRight()
+
+        #draw background, buttons and sprites
+        screen.blit(BackGround5,(0,0))
         for button in level6_buttons:
             button.draw()
+
+        ALL_sprites_lists.draw(screen)
+        if Balloon.image.collidepoint(pos):
+            Hit = True
+            Balloon.image.y = (900)
+            Balloon.image.x = (900) 
+            myBalloon = Balloon(BalloonImage1, 70, 70, -5)
+        
+        fontTitle = pygame.font.Font('gomarice_no_continue.ttf', 64)
+        textSurfaceTitle7 = fontTitle.render('Village health:' + str(x) , True, GREY) 
+        textRectTitle7 = textSurfaceTitle7.get_rect()
+        textRectTitle7.center = (40,40)
+        screen.blit(textSurfaceTitle7, textRectTitle7)
 
     elif level == 10:
         screen.blit(BackGround6,(0,0))
