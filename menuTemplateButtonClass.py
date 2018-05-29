@@ -15,7 +15,7 @@ BackGround2 = pygame.image.load('maxresdefault (2).jpg')
 BackGround3 = pygame.image.load('893996-beautiful-cool-naruto-backgrounds-1920x1080.jpg')
 BackGround4 = pygame.image.load('Nijū_Shōtai_Raidō.png')
 BackGround5 = pygame.image.load('grass_template_straightpath.jpg')
-
+BackGround6 = pygame.image.load('P:/final-project-the-legendary-sannin/naruto_sauske.jpg')
 #https://stackoverflow.com/questions/21947389/how-to-continuously-move-an-image-in-pygame
 import pygame, sys
 pygame.init()
@@ -164,12 +164,7 @@ def my_mainmenu_function():
 
 def pop(score):
     pos =pygame.mouse.get_pos()
-    Pop = False
-    for balloon in Balloon:
-        if Balloon.rect.collidepoint(pos):
-            Pop = True
-            score += 1
-        print ("gang gang finna work")
+   
         
 def mousebuttondown(level):
     """A function th        screen.blit(BackGround3,(0,0))
@@ -214,12 +209,16 @@ clock = pygame.time.Clock()
 
 ALL_sprites_lists = pygame.sprite.Group()
 BalloonImage1 = pygame.image.load("blue-balloon-hi.png")
+BalloonImage2 = pygame.image.load("new-pink-balloon-hi.png")
 for i in range(5):
-    myBalloon = Balloon(BalloonImage1, 30, 70, 5)
-    myBalloon.rect.x = random.randint(-2100,0)
-    myBalloon.rect.y = 0
-    ALL_sprites_lists.add(myBalloon)
-
+    myBalloon1 = Balloon(BalloonImage1, 50, 70, 5)
+    myBalloon1.rect.x = random.randint(-2100,0)
+    myBalloon1.rect.y = 340
+    myBalloon2 = Balloon(BalloonImage2, 50, 70, 5)
+    myBalloon2.rect.x = random.randint (-2100,0)
+    myBalloon2.rect.y = 340
+    ALL_sprites_lists.add(myBalloon1)
+    ALL_sprites_lists.add(myBalloon2)
 
 #create button objects
 button_01 = Button("Settings", (SCREENWIDTH*2/3.3, SCREENHEIGHT*3.5/4), my_settings_function)
@@ -365,6 +364,17 @@ while carryOn:
             
     elif level == 10:
         screen.blit(BackGround6,(0,0))
+        fontTitle = pygame.font.Font('gomarice_no_continue.ttf', 37)
+        textSurfaceTitle7 = fontTitle.render('Special assistance: Mr. Brichta', True, BLACK) 
+        textRectTitle7 = textSurfaceTitle7.get_rect()
+        textRectTitle7.center = (395, 480)
+        screen.blit(textSurfaceTitle7, textRectTitle7)
+
+        fontTitle = pygame.font.Font('gomarice_no_continue.ttf', 37)
+        textSurfaceTitle8 = fontTitle.render('Creators: Karim, Shaan ', True, BLACK) 
+        textRectTitle8 = textSurfaceTitle8.get_rect()
+        textRectTitle8.center = (390, 440)
+        screen.blit(textSurfaceTitle8, textRectTitle8)
         for button in level10_buttons:
             button.draw() 
     # Update the screen with queued shapes
