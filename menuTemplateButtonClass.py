@@ -8,12 +8,12 @@
 import pygame, sys, random
 from balloon import Balloon
 pygame.init()
-BackGround1 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/710573-most-popular-tobi-wallpaper-1920x1080-for-hd-1080p.jpg')
-BackGround2 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/images (1).jpg')
-BackGround3 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/893996-beautiful-cool-naruto-backgrounds-1920x1080.jpg')
-BackGround4 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/Nijū_Shōtai_Raidō.png')
-BackGround5 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/grass_template_straightpath.jpg')
-BackGround6 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/-Naruto-Goodbye-Daddy-uzumaki-naruto-shippuuden-37545372-500-281.jpg')
+BackGround1 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/background/images/tobi.jpg')
+BackGround2 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/background/images/windrasen.jpg')
+BackGround3 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/background/images/narutosasuke.jpg')
+BackGround4 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/background/images/base.png')
+BackGround5 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/background/images/path.jpg')
+BackGround6 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/background/images/kamina.png')
 
 
 #https://stackoverflow.com/questions/21947389/how-to-continuously-move-an-image-in-pygame
@@ -143,7 +143,7 @@ def my_credits_function():
     level += 7    
 
 def my_back_function():
-    """A function that retreats to the previous level"""//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/grass_template_straightpath.jpg
+    """A function that retreats to the previous level"""
     global level
     level -= 1
 
@@ -223,7 +223,6 @@ at checks which button ):
     elif level == 6:
         for button in level6_buttons:
             if button.rect.collidepoint(pos):
-             
                     button.call_back()
     elif level == 10:
         for button in level10_buttons:
@@ -238,7 +237,7 @@ clock = pygame.time.Clock()
 
 
 ALL_sprites_lists = pygame.sprite.Group()
-BalloonImage1 = pygame.image.load("blue-balloon-hi.png")
+BalloonImage1 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/background/images/blue-balloon-hi.png')
 for i in range(5):
     myBalloon = Balloon(BalloonImage1, 70, 70, 5)
     myBalloon.rect.x = random.randint(-2100,0)
@@ -382,9 +381,18 @@ while carryOn:
 
     elif level == 6:
         #game code
-        if pygame.mouse.get_pressed()[0] and balloon.image.collidepoint(pygame.mouse.get_pos()):
-         pygame.Balloon1.Sprite.remove
-        x = 100
+        for balloon in ALL_sprites_lists:
+            if pygame.mouse.get_pressed()[0] and balloon.rect.collidepoint(pygame.mouse.get_pos()):
+                print('hit')
+                balloon.rect.x = random.randint(-2100,0)
+                balloon.rect.y = 355
+            
+                #pygame.sprite.Sprite.remove(myBalloon)
+           
+  
+               
+         #pygame.sprite.Sprite.remove
+        Health = 100
         #update positions of balloons
         for Balloon in ALL_sprites_lists:
             Balloon.moveRight()
@@ -394,18 +402,23 @@ while carryOn:
         for button in level6_buttons:
             button.draw()
 
+       
+
         ALL_sprites_lists.draw(screen)
-        if Balloon.image.collidepoint(pos):
-            Hit = True
-            Balloon.image.y = (900)
-            Balloon.image.x = (900) 
-            myBalloon = Balloon(BalloonImage1, 70, 70, -5)
+       # if Balloon.image.collidepoint(pos):
+           # Hit = True
+           # Balloon.image.y = (900)
+           # Balloon.image.x = (900) 
+           # myBalloon = Balloon(BalloonImage1, 70, 70, -5)
         
         fontTitle = pygame.font.Font('gomarice_no_continue.ttf', 64)
-        textSurfaceTitle7 = fontTitle.render('Village health:' + str(x) , True, GREY) 
+        textSurfaceTitle7 = fontTitle.render('Village health:' + str(Health) , True, RED) 
         textRectTitle7 = textSurfaceTitle7.get_rect()
-        textRectTitle7.center = (40,40)
+        textRectTitle7.center = (260,40)
         screen.blit(textSurfaceTitle7, textRectTitle7)
+        if balloon.rect.x > 800:
+                Health -= 20
+
 
     elif level == 10:
         screen.blit(BackGround6,(0,0))
