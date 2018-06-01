@@ -10,12 +10,20 @@ from balloon import Balloon
 from car import Car
 pygame.init()
 
-BackGround1 = pygame.image.load('710573-most-popular-tobi-wallpaper-1920x1080-for-hd-1080p.jpg')
-BackGround2 = pygame.image.load('maxresdefault (2).jpg')
-BackGround3 = pygame.image.load('893996-beautiful-cool-naruto-backgrounds-1920x1080.jpg')
-BackGround4 = pygame.image.load('Nijū_Shōtai_Raidō.png')
-BackGround5 = pygame.image.load('grass_template_straightpath.jpg')
-BackGround6 = pygame.image.load('P:/final-project-the-legendary-sannin/naruto_sauske.jpg')
+BackGround1 = pygame.image.load('tobi.jpg')
+BackGround2 = pygame.image.load('settings.jpg')
+BackGround3 = pygame.image.load('2_menu_screen.jpg')
+BackGround4 = pygame.image.load('in_play.png')
+BackGround5 = pygame.image.load('game_screen.jpg')
+BackGround6 = pygame.image.load('credits.jpg')
+
+
+pygame.mixer.pre_init(frequency=44100, size=-16, channels=2, buffer=4096)
+pygame.mixer.music.load('Naruto Shippuden OST 1 - Track 02 - Douten ( Heaven Shaking Event ).mp3')
+pygame.mixer.music.play(-1)
+
+music_playing = True
+pygame.mixer.music.play()
 #https://stackoverflow.com/questions/21947389/how-to-continuously-move-an-image-in-pygame
 import pygame, sys
 pygame.init()
@@ -162,9 +170,17 @@ def my_mainmenu_function():
     global level
     level = 1
 
-def pop(score):
-    pos =pygame.mouse.get_pos()
-   
+def my_on_function():
+    global music_playing
+    if music_playing == True:
+        pygame.mixer.music.paus()
+        music_playing = False
+
+def my_off_function():
+    global music_playing
+    if music_playing == True:
+        pygame.mixer.music.pause()
+        music_playing = False
         
 def mousebuttondown(level):
     """A function th        screen.blit(BackGround3,(0,0))
@@ -210,6 +226,7 @@ clock = pygame.time.Clock()
 ALL_sprites_lists = pygame.sprite.Group()
 BalloonImage1 = pygame.image.load("blue-balloon-hi.png")
 BalloonImage2 = pygame.image.load("new-pink-balloon-hi.png")
+
 for i in range(5):
     myBalloon1 = Balloon(BalloonImage1, 50, 70, 5)
     myBalloon1.rect.x = random.randint(-2100,0)
@@ -264,9 +281,9 @@ while carryOn:
         elif event.type == pygame.MOUSEBUTTONDOWN: # Player clicked the mouse
             if level <= 6:
                 mousebuttondown(level)
-            else:
-                score = pop(score)
-
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            if level <= 10:
+                mousebuttondown(leve1)
     # --- Game logic goes here
 
     # --- Draw code goes here
