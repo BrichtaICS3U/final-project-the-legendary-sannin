@@ -233,7 +233,7 @@ at checks which button ):
 level = 1
 carryOn = True
 clock = pygame.time.Clock()
-
+Health = 100
 
 
 ALL_sprites_lists = pygame.sprite.Group()
@@ -392,10 +392,10 @@ while carryOn:
   
                
          #pygame.sprite.Sprite.remove
-        Health = 100
+        
         #update positions of balloons
         for Balloon in ALL_sprites_lists:
-            Balloon.moveRight()
+            Health = Balloon.moveRight(Health)
 
         #draw background, buttons and sprites
         screen.blit(BackGround5,(0,0))
@@ -418,6 +418,13 @@ while carryOn:
         screen.blit(textSurfaceTitle7, textRectTitle7)
         if balloon.rect.x > 800:
                 Health -= 20
+
+        if Health <= 0:
+           fontTitle = pygame.font.Font('gomarice_no_continue.ttf', 34)
+           textSurfaceTitle8 = fontTitle.render('YOUR VILLAGE HAS BEEN DESTROYED', True, RED) 
+           textRectTitle8 = textSurfaceTitle8.get_rect()
+           textRectTitle8.center = (300,355)
+           screen.blit(textSurfaceTitle8, textRectTitle8)    
 
 
     elif level == 10:
