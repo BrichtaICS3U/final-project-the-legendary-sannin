@@ -7,8 +7,8 @@
 # pygame.sprite.Sprite.remove
 import pygame, sys, random
 from balloon import Balloon
-from car import Car
 pygame.init()
+
 
 BackGround1 = pygame.image.load('tobi.jpg')
 BackGround2 = pygame.image.load('settings.jpg')
@@ -24,6 +24,7 @@ pygame.mixer.music.play(-1)
 
 music_playing = True
 pygame.mixer.music.play()
+
 #https://stackoverflow.com/questions/21947389/how-to-continuously-move-an-image-in-pygame
 import pygame, sys
 pygame.init()
@@ -55,6 +56,8 @@ SCREENHEIGHT = 710
 size = (SCREENWIDTH, SCREENHEIGHT)
 screen = pygame.display.set_mode(size)
 
+
+all_sprites_list = pygame.sprite.Group()
 
 class Button():
     """This is a class for a generic button.
@@ -102,6 +105,20 @@ class Button():
         pos = pygame.mouse.get_pos()
         if self.rect.collidepoint(pos):
             self.bg = BBRED  # mouseover color
+
+
+    def mouseBalloondown():
+        pos = pygame.mouse.get_pos()
+        Hit = False
+        for balloon in Balloon:
+         if balloon.image.collidepoint(pos):
+            Hit = True
+            balloon.image.y = (900)
+            balloon.image.x = (900) 
+            myBalloon = balloon(balloonImage1, 70, 70, 5)
+
+
+    
 
     def call_back(self):
         """Runs a function when clicked"""
@@ -170,17 +187,23 @@ def my_mainmenu_function():
     global level
     level = 1
 
-def my_on_function():
-    global music_playing
-    if music_playing == True:
-        pygame.mixer.music.paus()
-        music_playing = False
 
-def my_off_function():
-    global music_playing
-    if music_playing == True:
-        pygame.mixer.music.pause()
-        music_playing = False
+#def my_on_function():
+    #global music_playing
+    #if music_playing == True:
+     #   pygame.mixer.music.paus()
+    #    music_playing = False
+
+#def my_off_function():
+   # global music_playing
+   # if music_playing == True:
+     #   pygame.mixer.music.pause()
+
+
+def my_display_function(screen,self):
+    BackGround5 = Pygame.image.load('grass_template_straightpath.jpg')
+    'A function that allows sprite to be shown'
+
         
 def mousebuttondown(level):
     """A function th        screen.blit(BackGround3,(0,0))
@@ -210,7 +233,6 @@ at checks which button ):
     elif level == 6:
         for button in level6_buttons:
             if button.rect.collidepoint(pos):
-             for balloon in Balloon:
                     button.call_back()
     elif level == 10:
         for button in level10_buttons:
@@ -223,19 +245,18 @@ carryOn = True
 clock = pygame.time.Clock()
 
 
+
 ALL_sprites_lists = pygame.sprite.Group()
+
 BalloonImage1 = pygame.image.load("blue-balloon-hi.png")
-BalloonImage2 = pygame.image.load("new-pink-balloon-hi.png")
 
 for i in range(5):
-    myBalloon1 = Balloon(BalloonImage1, 50, 70, 5)
-    myBalloon1.rect.x = random.randint(-2100,0)
-    myBalloon1.rect.y = 340
-    myBalloon2 = Balloon(BalloonImage2, 50, 70, 5)
-    myBalloon2.rect.x = random.randint (-2100,0)
-    myBalloon2.rect.y = 340
-    ALL_sprites_lists.add(myBalloon1)
-    ALL_sprites_lists.add(myBalloon2)
+    myBalloon = Balloon(BalloonImage1, 70, 70, 5)
+    myBalloon.rect.x = random.randint(-2100,0)
+    myBalloon.rect.y = 355
+    ALL_sprites_lists.add(myBalloon)
+
+
 
 #create button objects
 button_01 = Button("Settings", (SCREENWIDTH*2/3.3, SCREENHEIGHT*3.5/4), my_settings_function)
@@ -363,11 +384,27 @@ while carryOn:
 
 
 
+    
+
+
+
+
 
 
     elif level == 6:
         #game code
-
+        for balloon in ALL_sprites_lists:
+            if pygame.mouse.get_pressed()[0] and balloon.rect.collidepoint(pygame.mouse.get_pos()):
+                print('hit')
+                balloon.rect.x = random.randint(-2100,0)
+                balloon.rect.y = 355
+            
+                #pygame.sprite.Sprite.remove(myBalloon)
+           
+  
+               
+         #pygame.sprite.Sprite.remove
+        Health = 100
         #update positions of balloons
         for Balloon in ALL_sprites_lists:
             Balloon.moveRight()
@@ -377,21 +414,26 @@ while carryOn:
         for button in level6_buttons:
             button.draw()
 
+       
+
         ALL_sprites_lists.draw(screen)
-            
+       # if Balloon.image.collidepoint(pos):
+           # Hit = True
+           # Balloon.image.y = (900)
+           # Balloon.image.x = (900) 
+           # myBalloon = Balloon(BalloonImage1, 70, 70, -5)
+        
+        fontTitle = pygame.font.Font('gomarice_no_continue.ttf', 64)
+        textSurfaceTitle7 = fontTitle.render('Village health:' + str(Health) , True, RED) 
+        textRectTitle7 = textSurfaceTitle7.get_rect()
+        textRectTitle7.center = (260,40)
+        screen.blit(textSurfaceTitle7, textRectTitle7)
+        if balloon.rect.x > 800:
+                Health -= 20
+
+
     elif level == 10:
         screen.blit(BackGround6,(0,0))
-        fontTitle = pygame.font.Font('gomarice_no_continue.ttf', 37)
-        textSurfaceTitle7 = fontTitle.render('Special assistance: Mr. Brichta', True, BLACK) 
-        textRectTitle7 = textSurfaceTitle7.get_rect()
-        textRectTitle7.center = (395, 480)
-        screen.blit(textSurfaceTitle7, textRectTitle7)
-
-        fontTitle = pygame.font.Font('gomarice_no_continue.ttf', 37)
-        textSurfaceTitle8 = fontTitle.render('Creators: Karim, Shaan ', True, BLACK) 
-        textRectTitle8 = textSurfaceTitle8.get_rect()
-        textRectTitle8.center = (390, 440)
-        screen.blit(textSurfaceTitle8, textRectTitle8)
         for button in level10_buttons:
             button.draw() 
     # Update the screen with queued shapes

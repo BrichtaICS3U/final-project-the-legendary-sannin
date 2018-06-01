@@ -23,6 +23,7 @@ class Balloon(pygame.sprite.Sprite):
         
         self.rect = self.image.get_rect()
 
+
     def moveRight(self):
         self.rect.x += self.speed
         if self.rect.x > SCREENWIDTH:
