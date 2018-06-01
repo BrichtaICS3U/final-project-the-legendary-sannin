@@ -8,13 +8,22 @@
 import pygame, sys, random
 from balloon import Balloon
 pygame.init()
-BackGround1 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/background/images/tobi.jpg')
-BackGround2 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/background/images/windrasen.jpg')
-BackGround3 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/background/images/narutosasuke.jpg')
-BackGround4 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/background/images/base.png')
-BackGround5 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/background/images/path.jpg')
-BackGround6 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/background/images/kamina.png')
 
+
+BackGround1 = pygame.image.load('tobi.jpg')
+BackGround2 = pygame.image.load('settings.jpg')
+BackGround3 = pygame.image.load('2_menu_screen.jpg')
+BackGround4 = pygame.image.load('in_play.png')
+BackGround5 = pygame.image.load('game_screen.jpg')
+BackGround6 = pygame.image.load('credits.jpg')
+
+
+pygame.mixer.pre_init(frequency=44100, size=-16, channels=2, buffer=4096)
+pygame.mixer.music.load('Naruto Shippuden OST 1 - Track 02 - Douten ( Heaven Shaking Event ).mp3')
+pygame.mixer.music.play(-1)
+
+music_playing = True
+pygame.mixer.music.play()
 
 #https://stackoverflow.com/questions/21947389/how-to-continuously-move-an-image-in-pygame
 import pygame, sys
@@ -179,20 +188,21 @@ def my_mainmenu_function():
     level = 1
 
 
+#def my_on_function():
+    #global music_playing
+    #if music_playing == True:
+     #   pygame.mixer.music.paus()
+    #    music_playing = False
+
+#def my_off_function():
+   # global music_playing
+   # if music_playing == True:
+     #   pygame.mixer.music.pause()
+
+
 def my_display_function(screen,self):
-    BackGround5 = Pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/final-project-the-legendary-sannin/grass_template_straightpath.jpg')
+    BackGround5 = Pygame.image.load('grass_template_straightpath.jpg')
     'A function that allows sprite to be shown'
-
-
-
-def pop(score):
-    pos =pygame.mouse.get_pos()
-    Pop = False
-    for balloon in Balloon:
-        if Balloon.rect.collidepoint(pos):
-            Pop = True
-            score += 1
-        print ("gang gang finna work")
 
         
 def mousebuttondown(level):
@@ -237,9 +247,11 @@ Health = 100
 
 
 ALL_sprites_lists = pygame.sprite.Group()
-BalloonImage1 = pygame.image.load('//ad.ocdsb.ca/studenthome/2/S331391482/ICSsummative/background/images/blue-balloon-hi.png')
+
+BalloonImage1 = pygame.image.load("blue-balloon-hi.png")
+
 for i in range(5):
-    myBalloon = Balloon(BalloonImage1, 70, 70, 5)
+    myBalloon = Balloon(BalloonImage1, 70, 70, 10)
     myBalloon.rect.x = random.randint(-2100,0)
     myBalloon.rect.y = 355
     ALL_sprites_lists.add(myBalloon)
@@ -290,9 +302,9 @@ while carryOn:
         elif event.type == pygame.MOUSEBUTTONDOWN: # Player clicked the mouse
             if level <= 6:
                 mousebuttondown(level)
-            else:
-                score = pop(score)
-
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            if level <= 10:
+                mousebuttondown(leve1)
     # --- Game logic goes here
 
     # --- Draw code goes here
@@ -420,11 +432,13 @@ while carryOn:
                 Health -= 20
 
         if Health <= 0:
-           fontTitle = pygame.font.Font('gomarice_no_continue.ttf', 34)
-           textSurfaceTitle8 = fontTitle.render('YOUR VILLAGE HAS BEEN DESTROYED', True, RED) 
+           fontTitle = pygame.font.Font('gomarice_no_continue.ttf', 54)
+           textSurfaceTitle8 = fontTitle.render('YOUR VILLAGE HAS BEEN DESTROYED', True, TEA) 
            textRectTitle8 = textSurfaceTitle8.get_rect()
-           textRectTitle8.center = (300,355)
-           screen.blit(textSurfaceTitle8, textRectTitle8)    
+           textRectTitle8.center = (375,355)
+           screen.blit(textSurfaceTitle8, textRectTitle8)
+           for balloon in ALL_sprites_lists:
+               balloon.speed = 0
 
 
     elif level == 10:
