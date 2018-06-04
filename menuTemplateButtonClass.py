@@ -233,7 +233,7 @@ at checks which button ):
     elif level == 6:
         for button in level6_buttons:
             if button.rect.collidepoint(pos):
-                    button.call_back()
+                button.call_back()
     elif level == 10:
         for button in level10_buttons:
             if button.rect.collidepoint(pos):
@@ -249,12 +249,20 @@ clock = pygame.time.Clock()
 ALL_sprites_lists = pygame.sprite.Group()
 
 BalloonImage1 = pygame.image.load("blue-balloon-hi.png")
+BalloonImage2 = pygame.image.load("P:/final-project-the-legendary-sannin/new-pink-balloon-hi (1).png")
 
 for i in range(5):
-    myBalloon = Balloon(BalloonImage1, 70, 70, 5)
-    myBalloon.rect.x = random.randint(-2100,0)
-    myBalloon.rect.y = 355
-    ALL_sprites_lists.add(myBalloon)
+    myBalloon1 = Balloon(BalloonImage1, 70, 70, 15)
+    myBalloon1.rect.x = random.randint(-2100,0)
+    myBalloon1.rect.y = 355
+
+    myBalloon2 = Balloon(BalloonImage2, 70, 70, 5)
+    myBalloon2.rect.x = random.randint(-2100,0)
+    myBalloon2.rect.y = 355
+
+   
+    ALL_sprites_lists.add(myBalloon1)
+    ALL_sprites_lists.add(myBalloon2)
 
 
 
