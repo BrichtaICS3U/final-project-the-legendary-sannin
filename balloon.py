@@ -24,10 +24,12 @@ class Balloon(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
 
 
-    def moveRight(self):
+    def moveRight(self, Health):
         self.rect.x += self.speed
         if self.rect.x > SCREENWIDTH:
             self.rect.x = -2*self.width
+            Health -= 20
+        return Health
             
     def draw(self, screen):
         screen.blit(self.image, self.rect)

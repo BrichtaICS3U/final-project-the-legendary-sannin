@@ -16,7 +16,7 @@ BackGround3 = pygame.image.load('2_menu_screen.jpg')
 BackGround4 = pygame.image.load('in_play.png')
 BackGround5 = pygame.image.load('game_screen.jpg')
 BackGround6 = pygame.image.load('credits.jpg')
-
+BackGround7 = pygame.image.load('jariya.jpg')
 
 pygame.mixer.pre_init(frequency=44100, size=-16, channels=2, buffer=4096)
 pygame.mixer.music.load('Naruto Shippuden OST 1 - Track 02 - Douten ( Heaven Shaking Event ).mp3')
@@ -187,17 +187,23 @@ def my_mainmenu_function():
     global level
     level = 1
 
+def my_lose_funtion():
+    """ A function that will take the user to a new level after loosing"""
+    #if Health <= 0:
+       # Health == 100
+       # All_sprites_lists:
+       # myBalloon1.rect.x = random.randint(-2100,0)   
+       # myBalloon2.rect.x = random.randint(-2100,0)
+def my_on_function():
+    global music_playing
+    if music_playing == True:
+        pygame.mixer.music.paus()
+        music_playing = False
 
-#def my_on_function():
-    #global music_playing
-    #if music_playing == True:
-     #   pygame.mixer.music.paus()
-    #    music_playing = False
-
-#def my_off_function():
-   # global music_playing
-   # if music_playing == True:
-     #   pygame.mixer.music.pause()
+def my_off_function():
+    global music_playing
+    if music_playing == True:
+        pygame.mixer.music.pause()
 
 
 def my_display_function(screen,self):
@@ -238,18 +244,20 @@ at checks which button ):
         for button in level10_buttons:
             if button.rect.collidepoint(pos):
                 button.call_back()
-
-
+    elif level == 11:
+        for button in level11_buttons:
+            if button.rect.collidepoint(pos):
+                button.call_back()
+    
 level = 1
 carryOn = True
 clock = pygame.time.Clock()
-
-
+Health = 100
 
 ALL_sprites_lists = pygame.sprite.Group()
 
 BalloonImage1 = pygame.image.load("blue-balloon-hi.png")
-BalloonImage2 = pygame.image.load("P:/final-project-the-legendary-sannin/new-pink-balloon-hi (1).png")
+BalloonImage2 = pygame.image.load("new-pink-balloon-hi (1).png")
 
 for i in range(5):
     myBalloon1 = Balloon(BalloonImage1, 70, 70, 15)
@@ -280,7 +288,10 @@ button_10 = Button("Instructions", (SCREENWIDTH/2, SCREENHEIGHT/2), my_instructi
 button_11 = Button("Credits", (SCREENWIDTH/2, SCREENHEIGHT*3/4), my_credits_function)
 button_12 = Button("Gemu Shimasu", (SCREENWIDTH/2 , SCREENHEIGHT*2/5), my_playgame_function)
 button_13 = Button("MainMenu", (SCREENWIDTH/2.7, SCREENHEIGHT*2.5/5), my_mainmenu_function) # level 4 main menu
-button_14 = Button("Gemu Shimasu", (SCREENWIDTH/1.6 , SCREENHEIGHT*2.5/5), my_playgame_function) #level 4 game start
+button_14 = Button("MainMenu", (SCREENWIDTH/2.7, SCREENHEIGHT*2.5/5), my_mainmenu_function) # level 10 main menu
+button_15 = Button("Easy", (SCREENWIDTH/1.6 , SCREENHEIGHT*2.5/5), my_playgame_function) #level 4 game start
+button_16 = Button("Retry",(SCREENWIDTH/1.7 , SCREENHEIGHT*2.4/5), my_lose_funtion)
+button_17 = Button("MainMenu", (SCREENWIDTH/2.5, SCREENHEIGHT*2.4/5), my_mainmenu_function)
 
 #Game title
 #for Balloon in ALL_sprites_lists:
@@ -294,11 +305,12 @@ button_14 = Button("Gemu Shimasu", (SCREENWIDTH/1.6 , SCREENHEIGHT*2.5/5), my_pl
 level1_buttons = [button_01, button_03 , button_04]
 level2_buttons = [button_02, button_05, button_06, button_07]
 level3_buttons = [button_09, button_10, button_11]
-level4_buttons = [button_13, button_14,] 
+level4_buttons = [button_13, button_15] 
 level5_buttons = [button_02]
 level6_buttons = [button_09]
 level7_buttons = []
-level10_buttons = [button_09]
+level10_buttons = [button_14]
+level11_buttons = [button_16, button_17]
 #credits (level 10)
 # level3_buttons = [button_08]
 #---------Main Program Loop----------
@@ -391,14 +403,6 @@ while carryOn:
         screen.blit(textSurfaceTitle6, textRectTitle6)
 
 
-
-    
-
-
-
-
-
-
     elif level == 6:
         #game code
         for balloon in ALL_sprites_lists:
@@ -412,10 +416,10 @@ while carryOn:
   
                
          #pygame.sprite.Sprite.remove
-        Health = 100
+        
         #update positions of balloons
         for Balloon in ALL_sprites_lists:
-            Balloon.moveRight()
+            Health = Balloon.moveRight(Health)
 
         #draw background, buttons and sprites
         screen.blit(BackGround5,(0,0))
@@ -439,12 +443,26 @@ while carryOn:
         if balloon.rect.x > 800:
                 Health -= 20
 
+        if Health <= 0:
+           level += 5
+           for balloon in ALL_sprites_lists:
+               balloon.speed = 0
+
 
     elif level == 10:
         screen.blit(BackGround6,(0,0))
         for button in level10_buttons:
-            button.draw() 
-    # Update the screen with queued shapes
+            button.draw()
+    elif level == 11:
+        screen.blit(BackGround7, (0,0))
+        fontTitle = pygame.font.Font('gomarice_no_continue.ttf', 54)
+        textSurfaceTitle8 = fontTitle.render('YOUR VILLAGE HAS BEEN DESTROYED', True, BRED) 
+        textRectTitle8 = textSurfaceTitle8.get_rect()
+        textRectTitle8.center = (385,335)
+        screen.blit(textSurfaceTitle8, textRectTitle8)
+        for button in level11_buttons:
+            button.draw()
+ # Update the screen with queued shapes
     pygame.display.flip()
 
     # --- Limit to 60 frames per second
