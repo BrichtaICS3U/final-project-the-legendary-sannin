@@ -69,6 +69,7 @@ class Button():
     """
 
     def __init__(self, txt, location, action, bg=BRED, fg=BLACK, size=(120, 50), font_name="Segoe Print", font_size=16):
+        """This function defines the text, color, font and placement"""
         self.color = bg  # the static (normal) color
         self.bg = bg  # actual background color, can change on mouseover
         self.fg = fg  # text color
@@ -83,12 +84,13 @@ class Button():
         self.rect = self.surface.get_rect(center=location)
 
         self.call_back_ = action
-
+      
         #pygame.mixer.pre_init(frequency=44100, size=-16, channels=2, buffer=4096)
         #pygame.mixer.load('Sounds/soundtrack.mps3')
         #pygame.mixer.music.play(-1) THIS IS WHERE THE MUSIC FILE IS
 
     def draw(self):
+        """Global draw function that illustrates text, images, buttons, sprites"""
         self.mouseover()
 
         self.surface.fill(self.bg)
@@ -104,6 +106,7 @@ class Button():
 
 
     def mouseBalloondown():
+        """This function deals with the collision of the sprite"""
         pos = pygame.mouse.get_pos()
         Hit = False
         for balloon in Balloon:
@@ -194,6 +197,7 @@ def my_mainmenu_function():
     level = 1
 
 def my_retry_function():
+    """This function is used to reset the player life"""
     global level, Health
     level = 4  
     Health = 100
@@ -224,14 +228,14 @@ def my_retry_function():
 
 
 def my_display_function(screen,self):
+    """A function that allows sprite to be shown"""
     BackGround5 = Pygame.image.load('grass_template_straightpath.jpg')
-    'A function that allows sprite to be shown'
+   
 
         
 def mousebuttondown(level):
-    """A function th        screen.blit(BackGround3,(0,0))
-at checks which button ):
-                was pressed"""
+    """A function that checks if a button was pressed tranfering one
+        to set level"""
     pos = pygame.mouse.get_pos()
     if level == 1:
         for button in level1_buttons:
@@ -271,25 +275,21 @@ at checks which button ):
             if button.rect.collidepoint(pos):
                 button.call_back()
 
-level = 1
-carryOn = True
-clock = pygame.time.Clock()
-Health = 100
-EnemiesReamaining = 150
-score = 0
-
+#Stores all sprites into a list
 ALL_sprites_lists = pygame.sprite.Group()
 
+#Balloon images
 BalloonImage1 = pygame.image.load("blue-balloon-hi.png")
 BalloonImage2 = pygame.image.load("new-pink-balloon-hi (1).png")
 BalloonImage3 = pygame.image.load("orange-balloon.png")
 
+#Creates five of each ballons, sclaes to size, controls speed,randomly places on level
 for i in range(5):
-    myBalloon1 = Balloon(BalloonImage1, 70, 70, 7)
+    myBalloon1 = Balloon(BalloonImage1, 70, 70, 8)
     myBalloon1.rect.x = random.randint(-2100,0)
     myBalloon1.rect.y = 355
 
-    myBalloon2 = Balloon(BalloonImage2, 70, 70, 4)
+    myBalloon2 = Balloon(BalloonImage2, 70, 70, 7)
     myBalloon2.rect.x = random.randint(-2100,0)
     myBalloon2.rect.y = 355
 
@@ -305,7 +305,7 @@ for i in range(5):
 button_01 = Button("Settings", (SCREENWIDTH*2/3.3, SCREENHEIGHT*3.5/4), my_settings_function)
 button_02 = Button("Back", (SCREENWIDTH/2, SCREENHEIGHT/3), my_back_function)
 button_03 = Button("Quit", (SCREENWIDTH/2.7, SCREENHEIGHT*3.5/4), my_quit_function, bg=(50, 200, 20))
-button_04 = Button("Gemu Shimasu", (SCREENWIDTH/2, SCREENHEIGHT/2), my_playgame_function)
+button_04 = Button("Play", (SCREENWIDTH/2, SCREENHEIGHT/2), my_playgame_function)
 button_05 = Button("Sound", (SCREENWIDTH/2, SCREENHEIGHT/2), my_sound_function)
 button_06 = Button("Sound On", (SCREENWIDTH/4, SCREENHEIGHT/2), my_soundon_function)
 button_07 = Button("Sound Off", (SCREENWIDTH *3/4, SCREENHEIGHT/2), my_soundoff_function)
@@ -313,12 +313,12 @@ button_08 = Button("Next", (SCREENWIDTH/2, SCREENHEIGHT*2/3), my_next_function)
 button_09 = Button("MainMenu", (SCREENWIDTH/2, SCREENHEIGHT*1/5), my_mainmenu_function)
 button_10 = Button("Play!", (SCREENWIDTH/2, SCREENHEIGHT/2), my_instructions_function)
 button_11 = Button("Credits", (SCREENWIDTH/2, SCREENHEIGHT*3/4), my_credits_function)
-button_12 = Button("Gemu Shimasu", (SCREENWIDTH/2 , SCREENHEIGHT*2/5), my_playgame_function)
+button_12 = Button("Play", (SCREENWIDTH/2 , SCREENHEIGHT*2/5), my_playgame_function)
 button_13 = Button("MainMenu", (SCREENWIDTH/2.7, SCREENHEIGHT*2.5/5), my_mainmenu_function) # level 4 main menu
 button_14 = Button("Gemu Shimasu", (SCREENWIDTH/1.6 , SCREENHEIGHT*2.5/5), my_playgame_function) #level 4 game start
 button_15 = Button("Tutorial", (SCREENWIDTH/2.7, SCREENHEIGHT*2.5/5), my_easy_function) # level 4 main menu
 button_16 = Button("Survival!", (SCREENWIDTH/1.7 , SCREENHEIGHT*2.5/5), my_hard_function)
-button_18 = Button("Retry", (SCREENWIDTH/1.7 , SCREENHEIGHT*2.5/5), my_retry_function)
+button_18 = Button("Retry", (SCREENWIDTH/2.0 , SCREENHEIGHT*2.5/5), my_retry_function)
 #Game title
 #for Balloon in ALL_sprites_lists:
    # Balloon.moveRight()
@@ -361,7 +361,7 @@ while carryOn:
 
     
 
-    # Draw buttons
+    # Draw buttons, background, and text
     if level == 1:
         screen.blit(BackGround1,(0,0))
         for button in level1_buttons:
@@ -515,12 +515,7 @@ while carryOn:
        
 
         ALL_sprites_lists.draw(screen)
-       # if Balloon.image.collidepoint(pos):
-           # Hit = True
-           # Balloon.image.y = (900)
-           # Balloon.image.x = (900) 
-           # myBalloon = Balloon(BalloonImage1, 70, 70, -5)
-        
+        #Draws players health, if ballon is not clicked health -20
         fontTitle = pygame.font.Font('gomarice_no_continue.ttf', 64)
         textSurfaceTitle7 = fontTitle.render('Village health:' + str(Health) , True, RED) 
         textRectTitle7 = textSurfaceTitle7.get_rect()
@@ -529,11 +524,13 @@ while carryOn:
         if balloon.rect.x > 800:
                 Health -= 20
 
+        #If health is 0 bringss player to a retry screen, that displays there score
         if Health <= 0:
            level = 8
            for balloon in ALL_sprites_lists:
                balloon.speed = 0
 
+    #Retry screen, displays score and button to retry
     elif level == 8:
         screen.blit(BackGround8,(0,0))
         fontTitle = pygame.font.Font('gomarice_no_continue.ttf', 64)
@@ -541,6 +538,13 @@ while carryOn:
         textRectTitle9 = textSurfaceTitle9.get_rect()
         textRectTitle9.center = (405,300)
         screen.blit(textSurfaceTitle9, textRectTitle9)
+
+        fontTitle = pygame.font.Font('gomarice_no_continue.ttf', 42)
+        textSurfaceTitle10 = fontTitle.render("Your village has been destryoed!!", True, BRED) 
+        textRectTitle10 = textSurfaceTitle10.get_rect()
+        textRectTitle10.center = (405,200)
+        screen.blit(textSurfaceTitle10, textRectTitle10)
+
         for button in level8_buttons:
             button.draw()
             
